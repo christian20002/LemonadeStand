@@ -1,7 +1,5 @@
 *.class
 *.ctext
 *.bluej
-.classpath
-.project
 Game.ctext
 /Game.ctxt
