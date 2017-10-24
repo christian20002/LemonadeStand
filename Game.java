@@ -5,6 +5,7 @@
  * @author (your name)
  * @version (a version number or a date)
  */
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game
@@ -43,6 +44,8 @@ public class Game
         System.out.println(
         "ARE YOU STARTING A NEW GAME (YES OR NO)");
         
+        clear();
+        
         
         print(
         "TO MANAGE YOUR "+PROD+" STAND, YOU WILL\n"+
@@ -62,6 +65,7 @@ public class Game
         inputTxt("PRESS ENTER TO CONTINUE, ESC TO END...");
         
         
+        
         print(
         	"YOUR EXPENSES ARE THE SUM OF THE COST OF\n"+
         "THE "+PROD+" STAND AND THE COST OF THE SIGNS.\n\n"+
@@ -70,7 +74,7 @@ public class Game
         
         inputTxt("Press enter to continue, esc to end...");
         
-        
+        clear();
         
         
         
@@ -81,20 +85,33 @@ public class Game
         
         
     }
+   //this method acts like it clears the screen.
     
-    private void print(String text){
-        System.out.println(text.toUpperCase());
-    }
+    private void clear()
+    	{
+    		char c = '\n';
+    		int length = 25;
+    		char[] chars = new char[length];
+    		Arrays.fill(chars, c);
+    		System.out.print(String.valueOf(chars));
+    	}
     
-    private void weatherScreen() {
-    	System.out.println("It is currently sunny");
-    }
+    		private void print(String text)
+    		{
+    			System.out.println(text.toUpperCase());
+    		}
+    
+    		private void weatherScreen() 
+    		{
+    			System.out.println("It is currently sunny");
+    		}
     
     
-    private String inputTxt(String prompt){
-        System.out.println(prompt.toUpperCase());
-        return sn.nextLine();
-    }
+    			private String inputTxt(String prompt)
+    			{
+    				System.out.println(prompt.toUpperCase());
+    				return sn.nextLine();
+    			}
     
     private int inputInt(String prompt) {
     		System.out.println(prompt.toUpperCase());
