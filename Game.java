@@ -6,6 +6,7 @@
  * @version (a version number or a date)
  */
 import java.util.Scanner;
+import java.util.Random;
 
 public class Game
 {
@@ -29,7 +30,7 @@ public class Game
     
     Scanner sn;
     
-    void intro(){
+     void intro(){
         System.out.println(
         "HI WELCOME TO "+LEM+"SVILLE, CALIFORNIA!\n\n"+
         "IN THIS SMALL TOWN, YOU ARE IN CHARGE OF\n"+
@@ -88,7 +89,7 @@ public class Game
     
     /*
      * TODO: Create actual weather randomizing system.
-     * Jacob and Marcos
+     * Priscilla, Jacob, and Marco's Project
      */
     private void weatherScreen() {
     	System.out.println("It is currently sunny"); 
@@ -113,6 +114,14 @@ public class Game
     			+ "wish to make ?");
     	
     }
+    private void WeatherGroup(){
+    	
+    	
+    }
+   
+    
+    	     
+    
     
     public Game()
     {
@@ -124,6 +133,11 @@ public class Game
         
         x = 0;
     }
+    
+    
+    
+    
+    
     public static void main(String[] args){
         
         new Game();
