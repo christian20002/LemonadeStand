@@ -47,7 +47,7 @@ public class Game
         
         clear();
         
-        
+         
         print(
         "TO MANAGE YOUR "+PROD+" STAND, YOU WILL\n"+
         "NEED TO MAKE THESE DECISIONS EVERY DAY:\n\n"+
