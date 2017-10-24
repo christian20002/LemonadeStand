@@ -86,8 +86,11 @@ public class Game
         System.out.println(text.toUpperCase());
     }
     
+    /*
+     * TODO: Create actual weather randomizing system.
+     */
     private void weatherScreen() {
-    	System.out.println("It is currently sunny");
+    	System.out.println("It is currently sunny"); 
     }
     
     
@@ -113,7 +116,7 @@ public class Game
     public Game()
     {
         sn = new Scanner(System.in); //initialize critical objects
-        intro();
+        intro(); //present introduction information
         
         weatherScreen();
         
