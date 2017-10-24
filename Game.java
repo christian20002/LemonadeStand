@@ -7,6 +7,7 @@
  */
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Game
 {
@@ -30,7 +31,7 @@ public class Game
     
     Scanner sn;
     
-    void intro(){
+     void intro(){
         System.out.println(
         "HI WELCOME TO "+LEM+"SVILLE, CALIFORNIA!\n\n"+
         "IN THIS SMALL TOWN, YOU ARE IN CHARGE OF\n"+
@@ -101,10 +102,13 @@ public class Game
     			System.out.println(text.toUpperCase());
     		}
     
-    		private void weatherScreen() 
-    		{
-    			System.out.println("It is currently sunny");
-    		}
+    /*
+     * TODO: Create actual weather randomizing system.
+     * Priscilla, Jacob, and Marco's Project
+     */
+    private void weatherScreen() {
+    	System.out.println("It is currently sunny"); 
+    }
     
     
     			private String inputTxt(String prompt)
@@ -126,25 +130,33 @@ public class Game
     			+ "wish to make ?");
     	
     }
+    private void WeatherGroup(){
+    	
+    	
+    }
+   
+    
+    	     
+    
     
     public Game()
     {
         sn = new Scanner(System.in); //initialize critical objects
-        intro();
+        intro(); //present introduction information
         
         weatherScreen();
         
         
         x = 0;
     }
+    
+    
+    
+    
+    
     public static void main(String[] args){
         
         new Game();
     }
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
+//test
 }
