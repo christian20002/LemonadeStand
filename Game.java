@@ -5,7 +5,9 @@
  * @author (your name)
  * @version (a version number or a date)
  */
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Game
 {
@@ -29,7 +31,7 @@ public class Game
     
     Scanner sn;
     
-    void intro(){
+     void intro(){
         System.out.println(
         "HI WELCOME TO "+LEM+"SVILLE, CALIFORNIA!\n\n"+
         "IN THIS SMALL TOWN, YOU ARE IN CHARGE OF\n"+
@@ -42,6 +44,8 @@ public class Game
         
         System.out.println(
         "ARE YOU STARTING A NEW GAME (YES OR NO)");
+        
+        clear();
         
         
         print(
@@ -62,6 +66,7 @@ public class Game
         inputTxt("PRESS ENTER TO CONTINUE, ESC TO END...");
         
         
+        
         print(
         	"YOUR EXPENSES ARE THE SUM OF THE COST OF\n"+
         "THE "+PROD+" STAND AND THE COST OF THE SIGNS.\n\n"+
@@ -70,7 +75,7 @@ public class Game
         
         inputTxt("Press enter to continue, esc to end...");
         
-        
+        clear();
         
         
         
@@ -81,23 +86,36 @@ public class Game
         
         
     }
+   //this method acts like it clears the screen.
     
-    private void print(String text){
-        System.out.println(text.toUpperCase());
-    }
+    private void clear()
+    	{
+    		char c = '\n';
+    		int length = 25;
+    		char[] chars = new char[length];
+    		Arrays.fill(chars, c);
+    		System.out.print(String.valueOf(chars));
+    	}
+    
+    		private void print(String text)
+    		{
+    			System.out.println(text.toUpperCase());
+    		}
     
     /*
      * TODO: Create actual weather randomizing system.
+     * Priscilla, Jacob, and Marco's Project
      */
     private void weatherScreen() {
     	System.out.println("It is currently sunny"); 
     }
     
     
-    private String inputTxt(String prompt){
-        System.out.println(prompt.toUpperCase());
-        return sn.nextLine();
-    }
+    			private String inputTxt(String prompt)
+    			{
+    				System.out.println(prompt.toUpperCase());
+    				return sn.nextLine();
+    			}
     
     private int inputInt(String prompt) {
     		System.out.println(prompt.toUpperCase());
@@ -114,6 +132,14 @@ public class Game
     	int signs = inputInt("How many Advertising signs do you wish to make? (15 cents each)");
     	
     }
+    private void WeatherGroup(){
+    	
+    	
+    }
+   
+    
+    	     
+    
     
     public Game()
     {
@@ -125,6 +151,11 @@ public class Game
         
         x = 0;
     }
+    
+    
+    
+    
+    
     public static void main(String[] args){
         
         new Game();
