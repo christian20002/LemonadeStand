@@ -89,7 +89,7 @@ public class Game
     
     /*
      * TODO: Create actual weather randomizing system.
-     * Priscilla, Jacob, and Marco's Project
+     
      */
     private void weatherScreen() {
     	System.out.println("It is currently sunny"); 
@@ -114,8 +114,12 @@ public class Game
     			+ "wish to make ?");
     	
     }
-    private void WeatherGroup(){
-    	
+    /*
+     *  Priscila, Marco and Jacob's group 
+     */
+    private void WeatherGroup()
+    {
+     
     	
     }
    
