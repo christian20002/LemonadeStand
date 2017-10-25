@@ -1,0 +1,62 @@
+import javax.swing.*;
+import java.awt.*;
+
+
+public class splashPanel {
+
+/*creates the GUI
+ the frame provides the screen area
+ the panel is the image
+ the button begins the game
+ the label provides instruction "start"	
+*/ 	
+	
+	private JFrame f;
+	private JPanel p;
+	private JButton b;
+	private JLabel label;
+	private JLabel label2;
+	
+// create the constructor for the class
+	
+	public splashPanel()
+	   {
+		 GUI();
+	   }
+		
+	public void GUI() 
+	{
+	
+		f = new JFrame("Lemonade Stand");
+		f.setVisible(true);
+		f.setSize(640,480);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+	    p = new JPanel();
+	    	p.setBackground(Color.GREEN);
+	   
+	    
+	    	b = new JButton("Start");
+	    	label = new JLabel("Click to start");
+	    	label2 = new JLabel("Lemonade Stand");
+	
+		p.add(b);
+		p.add(label);
+		p.add(label2);
+		
+;		
+		f.add(p);
+		
+		
+	}
+	
+	public static void main (String[] args ) {
+		
+		new splashPanel();
+		
+	}
+	
+	
+	
+}
