@@ -161,8 +161,17 @@ public class Game
      */
     private void WeatherGroup()
     {
+<<<<<<< HEAD
      
 
+=======
+     Random rand = new Random
+    	int weather1 = 0;
+    int weather2 = 1;
+    int weather3 = 2;
+    int weather4 = 3;
+    int 
+>>>>>>> branch 'master' of https://github.com/phscodes/LemonadeStand.git
     	
     }
    
