@@ -128,7 +128,7 @@ public class Game
     		System.out.println(prompt.toUpperCase());
     		return sn.nextInt();
     }
-    
+     
     /**
      * Asks a yes or no question and returns the user's response as a boolean.
      * @author Alejandro and Christian
