@@ -111,7 +111,7 @@ public class Game
     
     /*
      * TODO: Create actual weather randomizing system.
-     * Priscilla, Jacob, and Marco's Project
+     
      */
     private void weatherScreen() {
     	System.out.println("It is currently sunny"); 
@@ -152,10 +152,17 @@ public class Game
     	int signs = inputInt("How many Advertising signs do you wish to make? (15 cents each)");
     	
     }
+
     
 
-    private void WeatherGroup(){
-    	
+
+    /*
+     *  Priscila, Marco and Jacob's group 
+     */
+    private void WeatherGroup()
+    {
+     
+
     	
     }
    
