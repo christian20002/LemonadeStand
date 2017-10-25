@@ -129,6 +129,15 @@ public class Game
     		return sn.nextInt();
     }
     
+    /**
+     * Asks a yes or no question and returns the user's response as a boolean.
+     * @author Alejandro and Christian
+     * 
+     * repsonse as a boolean.
+     * 
+     * @param prompt The string to print to the screen
+     * @return Returns a boolean true if yes or y is entered, returns false if anything else is.
+     */
     private boolean yesNo(String prompt) {
     		System.out.println(prompt.toUpperCase());
     		String answer = sn.nextLine().toUpperCase();
