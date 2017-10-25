@@ -137,12 +137,39 @@ public class Game
      */
     private void WeatherGroup()
     {
-     Random rand = new Random
-    	int weather1 = 0;
-    int weather2 = 1;
-    int weather3 = 2;
-    int weather4 = 3;
-    int 
+     Random rand = new Random();
+    	int weather0 = 0;
+    int weather1 = 1;
+    int weather2 = 2;
+    
+    int weather = rand.nextInt(3);
+    switch (weather)
+    {
+    case 0:
+    	    weather0 ;
+    	    {
+    	    		// Karen's math 
+    	    }
+    	    break ;
+    
+    case 1:
+    		weather1();
+    		{
+    			//Karen's math
+    		}
+    		break ;
+    case 2:
+		weather2();
+		{
+			//Karen's math
+		}
+		break ;
+    }
+    
+    	
+    
+
+    
     	
     }
    
