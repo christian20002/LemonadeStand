@@ -171,6 +171,13 @@ public class Game
 
     	
     }
+    
+    
+    
+    
+    /* 
+     * aaron and israels part
+     */
    
     
     	     
