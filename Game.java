@@ -42,10 +42,17 @@ public class Game
         "AFFECT YOUR BUSINESS IN ANY WAY). IF YOU\n"+
         "MAKE THE MOST MONEY, YOU'RE THE WINNER!!\n\n");
         
-        System.out.println(
-        "ARE YOU STARTING A NEW GAME (YES OR NO)");
+        if (yesNo(
+        "ARE YOU STARTING A NEW GAME (YES OR NO)")){
+        	clear();
+        	print("started new game");
+        }
+        else {
+        	clear();
+        	print("started old game");
+        }
         
-        clear();
+        
         
          
         print(
@@ -64,7 +71,7 @@ public class Game
         "A GLASS (THIS MAY CHANGE IN THE FUTURE).");
         
         inputTxt("PRESS ENTER TO CONTINUE, ESC TO END...");
-        
+        clear();
         
         
         print(
@@ -122,6 +129,19 @@ public class Game
     		return sn.nextInt();
     }
     
+    private boolean yesNo(String prompt) {
+    		System.out.println(prompt.toUpperCase());
+    		String answer = sn.nextLine().toUpperCase();
+    		if (answer.equals("YES")||answer.equals("Y")) {
+    			return true;
+    		}
+    		else {
+    			return false;
+    		}
+    	 
+    }
+    
+    
     
     private void day() {
     	int glasses;
@@ -132,6 +152,8 @@ public class Game
     	int signs = inputInt("How many Advertising signs do you wish to make? (15 cents each)");
     	
     }
+    
+
     private void WeatherGroup(){
     	
     	
