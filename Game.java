@@ -175,23 +175,42 @@ public class Game
     private void WeatherGroup()
     {
 
-    Random rand = new Random
-    	int weather1 = 0;
-    int weather2 = 1;
-    int weather3 = 2;
-    int weather4 = 3;
-    int 
+	    Random rand = new Random();
+	    	int weather0 = 0;//sunny
+	    int weather1 = 1;//dry
+	    int weather2 = 2;//cloudy w/ chance for rain
+	    int weather = rand.nextInt(3);
+	    
+	    switch (weather)
+	    {
+		    case 0:
+		    	    weather0();// karen math in method
+		    	    break ;
+		    case 1:
+		    		weather1();// karen math in method
+		    		break ;
+		    case 2:
+				weather2();// karen math in method
+				
+				break;
+	    }
+	    
+	    	specialEventGroup();   	
 
-    	
     }
     
     
     
     
-    /* 
+    private void specialEventGroup() {
+		// TODO Auto-generated method stub
+		
+	}
+	/* 
      * aaron and israels part
      */
    
+    
     
     	     
      
