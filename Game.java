@@ -42,10 +42,17 @@ public class Game
         "AFFECT YOUR BUSINESS IN ANY WAY). IF YOU\n"+
         "MAKE THE MOST MONEY, YOU'RE THE WINNER!!\n\n");
         
-        System.out.println(
-        "ARE YOU STARTING A NEW GAME (YES OR NO)");
+        if (yesNo(
+        "ARE YOU STARTING A NEW GAME (YES OR NO)")){
+        	clear();
+        	print("started new game");
+        }
+        else {
+        	clear();
+        	print("started old game");
+        }
         
-        clear();
+        
         
          
         print(
@@ -64,7 +71,7 @@ public class Game
         "A GLASS (THIS MAY CHANGE IN THE FUTURE).");
         
         inputTxt("PRESS ENTER TO CONTINUE, ESC TO END...");
-        
+        clear();
         
         
         print(
@@ -121,6 +128,28 @@ public class Game
     		System.out.println(prompt.toUpperCase());
     		return sn.nextInt();
     }
+     
+    /**
+     * Asks a yes or no question and returns the user's response as a boolean.
+     * @author Alejandro and Christian
+     * 
+     * repsonse as a boolean.
+     * 
+     * @param prompt The string to print to the screen
+     * @return Returns a boolean true if yes or y is entered, returns false if anything else is.
+     */
+    private boolean yesNo(String prompt) {
+    		System.out.println(prompt.toUpperCase());
+    		String answer = sn.nextLine().toUpperCase();
+    		if (answer.equals("YES")||answer.equals("Y")) {
+    			return true;
+    		}
+    		else {
+    			return false;
+    		}
+    	 
+    }
+    
     
     
     private void day() {
@@ -132,11 +161,16 @@ public class Game
     	int signs = inputInt("How many Advertising signs do you wish to make? (15 cents each)");
     	
     }
+
+    
+
+
     /*
      *  Priscila, Marco and Jacob's group 
      */
     private void WeatherGroup()
     {
+
 	    Random rand = new Random();
 	    	int weather0 = 0;//sunny
 	    int weather1 = 1;//dry
@@ -158,12 +192,24 @@ public class Game
 	    }
 	    
 	    	specialEventGroup();   	
+
     }
+    
+    
+    
+    
+    private void specialEventGroup() {
+		// TODO Auto-generated method stub
+		
+	}
+	/* 
+     * aaron and israels part
+     */
    
     
     
     	     
-    
+     
     
     public Game()
     {
