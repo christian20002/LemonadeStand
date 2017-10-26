@@ -105,9 +105,10 @@ public class Game
      * TODO: Create actual weather randomizing system.
      
      */
-    private void weatherScreen() {
-    	System.out.println("Now let's look at the weather report to see how the day will be."); 
-    WeatherGroup();
+    private void weatherScreen() 
+    {
+    		System.out.println("Now let's look at the weather report to see how the day will be."); 
+    		WeatherGroup();
     }
     
     
