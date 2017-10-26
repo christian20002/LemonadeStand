@@ -137,42 +137,30 @@ public class Game
      */
     private void WeatherGroup()
     {
-     Random rand = new Random();
-    	int weather0 = 0;
-    int weather1 = 1;
-    int weather2 = 2;
-    
-    int weather = rand.nextInt(3);
-    switch (weather)
-    {
-    case 0:
-    	    weather0 ;
-    	    {
-    	    		// Karen's math 
-    	    }
-    	    break ;
-    
-    case 1:
-    		weather1();
-    		{
-    			//Karen's math
-    		}
-    		break ;
-    case 2:
-		weather2();
-		{
-			//Karen's math
-		}
-		break ;
-    }
-    
-    	
-    
-
-    
-    	
+	    Random rand = new Random();
+	    	int weather0 = 0;//sunny
+	    int weather1 = 1;//dry
+	    int weather2 = 2;//cloudy w/ chance for rain
+	    int weather = rand.nextInt(3);
+	    
+	    switch (weather)
+	    {
+		    case 0:
+		    	    weather0();// karen math in method
+		    	    break ;
+		    case 1:
+		    		weather1();// karen math in method
+		    		break ;
+		    case 2:
+				weather2();// karen math in method
+				
+				break ;
+	    }
+	    
+	    	specialEventGroup();   	
     }
    
+    
     
     	     
     
