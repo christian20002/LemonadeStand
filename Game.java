@@ -84,14 +84,6 @@ public class Game
         
         clear();
         
-        
-        
-        
-        
-        
-        
-        
-        
     }
    //this method acts like it clears the screen.
     
@@ -114,7 +106,8 @@ public class Game
      
      */
     private void weatherScreen() {
-    	System.out.println("It is currently sunny"); 
+    	System.out.println("Now let's look at the weather report to see how the day will be."); 
+    WeatherGroup();
     }
     
     
