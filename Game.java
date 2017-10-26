@@ -84,14 +84,6 @@ public class Game
         
         clear();
         
-        
-        
-        
-        
-        
-        
-        
-        
     }
    //this method acts like it clears the screen.
     
@@ -113,8 +105,10 @@ public class Game
      * TODO: Create actual weather randomizing system.
      
      */
-    private void weatherScreen() {
-    	System.out.println("It is currently sunny"); 
+    private void weatherScreen() 
+    {
+    		System.out.println("Now let's look at the weather report to see how the day will be."); 
+    		WeatherGroup();
     }
     
     
