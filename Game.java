@@ -118,11 +118,16 @@ public class Game
     }
     
     
-    			private String inputTxt(String prompt)
-    			{
-    				System.out.println(prompt.toUpperCase());
-    				return sn.nextLine();
-    			}
+	private String inputTxt(String prompt) {
+		System.out.println(prompt.toUpperCase());
+		return sn.nextLine();
+	}
+	
+	/**
+	 * Allows the user to input and Int
+	 * @param prompt The string to be printed to the screen
+	 * @return an int value that has been input.
+	 */
     
     private int inputInt(String prompt) {
     		System.out.println(prompt.toUpperCase());
@@ -133,7 +138,6 @@ public class Game
      * Asks a yes or no question and returns the user's response as a boolean.
      * @author Alejandro and Christian
      * 
-     * repsonse as a boolean.
      * 
      * @param prompt The string to print to the screen
      * @return Returns a boolean true if yes or y is entered, returns false if anything else is.
