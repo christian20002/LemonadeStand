@@ -154,7 +154,7 @@ public class Game
 		    case 2:
 				weather2();// karen math in method
 				
-				break ;
+				break;
 	    }
 	    
 	    	specialEventGroup();   	
