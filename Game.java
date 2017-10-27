@@ -78,6 +78,7 @@ public class Game
         "A GLASS (THIS MAY CHANGE IN THE FUTURE).");
         
         inputTxt("PRESS ENTER TO CONTINUE, ESC TO END...");
+        String i = sn.nextLine();
         clear();
         
         
@@ -88,7 +89,7 @@ public class Game
         "the income from sales and your expenses.");
         
         inputTxt("Press enter to continue, esc to end...");
-        
+        String b = sn.nextLine();
         clear();
         
         
@@ -114,7 +115,7 @@ public class Game
 		print("Just to be fair, let's make that $10.00 ");
 		print("\n"
 				+ "...ready to begin?");
-		if (yesNo("...Ready "));
+		String i = sn.next();
 		clear();
 	}
      
