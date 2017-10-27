@@ -97,7 +97,9 @@ public class Game
  	private void oldGame()
 	{
 		print("HI AGAIN! welcome to lemonsville!\n"
-				+ "You left it last Time.class Do you remember\n"
+				+ "\n"
+				+ "Let's continue your last game from where\n"
+				+ "You left it last Time.  Do you remember\n"
 				+ "What day number it was?");
 		day = inputInt("")+1;
 		print("Okay we'll start with day no. " + day);
