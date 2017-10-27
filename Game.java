@@ -102,7 +102,9 @@ public class Game
  	private void oldGame()
 	{
 		print("HI AGAIN! welcome to lemonsville!\n"
-				+ "You left it last Time.class Do you remember\n"
+				+ "\n"
+				+ "Let's continue your last game from where\n"
+				+ "You left it last Time.  Do you remember\n"
 				+ "What day number it was?");
 		day = inputInt("")+1;
 		print("Okay we'll start with day no. " + day);
@@ -181,15 +183,21 @@ public class Game
     	 
     }
     
+    // Ismael and Mike's
     
-    
+    int glasses = 0;
+    int signs = 0;
     private void day() {
-    	int glasses;
-    	print("On day "+day+"the cost of lemonade is "+cost);
+    	
+    
+    	print("On day " +day+ "the cost of lemonade is " +cost);
     	print(PROD+" stand "+standNum+"\t assets +" +assets);
     	glasses = inputInt("how many glasses of lemonade do you\n"
     			+ "wish to make ?");
-    	int signs = inputInt("How many Advertising signs do you wish to make? (15 cents each)");
+    	signs = inputInt("How many Advertising signs do you wish to make? (15 cents each)");
+    	
+    	
+    	 
     	
     }
 
@@ -229,6 +237,7 @@ public class Game
     
     
     
+
     private void specialEventGroup() {
 		// TODO Auto-generated method stub
 		
@@ -236,6 +245,7 @@ public class Game
 	/* 
      * aaron and israels part
      */
+
    
     
     private void playNote(int note,int length) throws InterruptedException, MidiUnavailableException {
@@ -288,7 +298,7 @@ public class Game
         intro(); //present introduction information
         
         weatherScreen();
-        
+        day();
         
         x = 0;
     }
