@@ -277,7 +277,7 @@ public class Game
         	try {Thread.sleep(1000);
         	} catch(InterruptedException e) { }
         	mChannels[0].noteOff(60);
-        	
+        	 
         	  playNote(52,750);
           playNote(52,250);
           playNote(55,250);
