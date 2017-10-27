@@ -5,6 +5,9 @@
  * @author (your name)
  * @version (a version number or a date)
  */
+
+import javax.sound.midi.*;
+
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Random;
@@ -21,6 +24,8 @@ public class Game
     /**
      * Constructor for objects of class Game
      */
+    
+	MidiChannel[] mChannels;
     
     final String PROD = "LEMONADE";
     final String LEM = "LEMON";
@@ -233,13 +238,53 @@ public class Game
      */
    
     
-    
+    private void playNote(int note,int length) throws InterruptedException, MidiUnavailableException {
+    		mChannels[0].noteOn(note,100);
+    		Thread.sleep(length);
+    		mChannels[0].noteOff(note);
+    		
+    }
     	     
      
     
     public Game()
     {
         sn = new Scanner(System.in); //initialize critical objects
+        
+        /*all this stuff here is to add music..
+         * @author Christian
+         */
+        try {
+        	Synthesizer midiSynth = MidiSystem.getSynthesizer();
+        	midiSynth.open();
+        	
+        	Instrument[] instr = midiSynth.getDefaultSoundbank().getInstruments();
+        	mChannels = midiSynth.getChannels();
+        	
+        	midiSynth.loadInstrument(instr[0]);
+        	
+        	mChannels[0].noteOn(60, 1000);
+        	try {Thread.sleep(1000);
+        	} catch(InterruptedException e) { }
+        	mChannels[0].noteOff(60);
+        	
+        	  playNote(52,750);
+          playNote(52,250);
+          playNote(55,250);
+          playNote(52,250);
+          playNote(50,250);
+          playNote(48,500);
+          playNote(47,250);
+
+
+
+
+              
+        	
+        	} catch(MidiUnavailableException e) {} catch(InterruptedException d) {}
+        	
+      
+        
         intro(); //present introduction information
         
         weatherScreen();
