@@ -92,14 +92,6 @@ public class Game
         String b = sn.nextLine();
         clear();
         
-        
-        
-        
-        
-        
-        
-        
-        
     }
      
  	private void oldGame()
@@ -141,22 +133,37 @@ public class Game
      * TODO: Create actual weather randomizing system.
      
      */
-    private void weatherScreen() {
-    	System.out.println("It is currently sunny"); 
+    private void weatherScreen() 
+    {
+    		System.out.println("Now let's look at the weather report to see how the day will be."); 
+    		WeatherGroup();
     }
     
     
-    			private String inputTxt(String prompt)
-    			{
-    				System.out.println(prompt.toUpperCase());
-    				return sn.nextLine();
-    			}
+	private String inputTxt(String prompt) {
+		System.out.println(prompt.toUpperCase());
+		return sn.nextLine();
+	}
+	
+	/**
+	 * Allows the user to input and Int
+	 * @param prompt The string to be printed to the screen
+	 * @return an int value that has been input.
+	 */
     
     private int inputInt(String prompt) {
     		System.out.println(prompt.toUpperCase());
     		return sn.nextInt();
     }
-    
+     
+    /**
+     * Asks a yes or no question and returns the user's response as a boolean.
+     * @author Alejandro and Christian
+     * 
+     * 
+     * @param prompt The string to print to the screen
+     * @return Returns a boolean true if yes or y is entered, returns false if anything else is.
+     */
     private boolean yesNo(String prompt) {
     		System.out.println(prompt.toUpperCase());
     		String answer = sn.nextLine().toUpperCase();
@@ -190,16 +197,42 @@ public class Game
     private void WeatherGroup()
     {
 
-    Random rand = new Random
-    	int weather1 = 0;
-    int weather2 = 1;
-    int weather3 = 2;
-    int weather4 = 3;
-    int 
+	    Random rand = new Random();
+	    	int weather0 = 0;//sunny
+	    int weather1 = 1;//dry
+	    int weather2 = 2;//cloudy w/ chance for rain
+	    int weather = rand.nextInt(3);
+	    
+	    switch (weather)
+	    {
+		    case 0:
+		    	    weather0();// karen math in method
+		    	    break ;
+		    case 1:
+		    		weather1();// karen math in method
+		    		break ;
+		    case 2:
+				weather2();// karen math in method
+				
+				break;
+	    }
+	    
+	    	specialEventGroup();   	
 
-    	
     }
+    
+    
+    
+    
+    private void specialEventGroup() {
+		// TODO Auto-generated method stub
+		
+	}
+	/* 
+     * aaron and israels part
+     */
    
+    
     
     	     
      
@@ -215,9 +248,9 @@ public class Game
         x = 0;
     }
     
+     
     
-    
-    
+     
     
     public static void main(String[] args){
         
