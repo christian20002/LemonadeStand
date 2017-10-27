@@ -121,7 +121,7 @@ public class Game
     		Arrays.fill(chars, c);
     		System.out.print(String.valueOf(chars));
     	}
-    
+     
     		private void print(String text)
     		{
     			System.out.println(text.toUpperCase());
