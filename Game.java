@@ -141,15 +141,21 @@ public class Game
     	 
     }
     
+    // Ismael and Mike's
     
-    
+    int glasses = 0;
+    int signs = 0;
     private void day() {
-    	int glasses;
-    	print("On day "+day+"the cost of lemonade is "+cost);
+    	
+    
+    	print("On day " +day+ "the cost of lemonade is " +cost);
     	print(PROD+" stand "+standNum+"\t assets +" +assets);
     	glasses = inputInt("how many glasses of lemonade do you\n"
     			+ "wish to make ?");
-    	int signs = inputInt("How many Advertising signs do you wish to make? (15 cents each)");
+    	signs = inputInt("How many Advertising signs do you wish to make? (15 cents each)");
+    	
+    	
+    	 
     	
     }
 
@@ -175,9 +181,9 @@ public class Game
     
     
     
-    /* 
-     * aaron and israels part
-     */
+     
+     // Aaron and Israel's part
+     
    
     
     	     
@@ -189,7 +195,7 @@ public class Game
         intro(); //present introduction information
         
         weatherScreen();
-        
+        day();
         
         x = 0;
     }
