@@ -211,36 +211,62 @@ public class Game
     {
 
 	    Random rand = new Random();
-	    	int weather0 = 0;//sunny
-	    int weather1 = 1;//dry
-	    int weather2 = 2;//cloudy w/ chance for rain
+	    int sunny = 0;//sunny
+	    int dry = 1;//dry
+	    int rainy = 2;//cloudy w/ chance for rain
 	    int weather = rand.nextInt(3);
 	    
 	    switch (weather)
 	    {
 		    case 0:
-		    	    weather0();// karen math in method
-		    	    break ;
+		    	weather0();// karen math in method
+		    	break ;
 		    case 1:
-		    		weather1();// karen math in method
-		    		break ;
+		    	weather1();// karen math in method
+		    	break ;
 		    case 2:
 				weather2();// karen math in method
 				
 				break;
-	    }
-	    
-	    	specialEventGroup();   	
-
+	    }   
     }
     
+    private void weather0() 
+    {
+    	
+    }
     
+    private void weather1() 
+    {
+    	
+    }
     
-    
+    private void weather2() 
+    {
+    	
+    }
 
-    private void specialEventGroup() {
+    private void specialEventGroup() 
+    {
 		// TODO Auto-generated method stub
-		
+    	Random rando = new Random();
+ 	    int robbery = 0;
+ 	    int haunted = 1;
+ 	    int concert = 2;
+ 	    int specialEvents = rando.nextInt(3);
+ 	    
+ 	    switch (specialEvents)
+ 	    {
+ 		    case 0:
+ 		    	robbery();// karen math in method
+ 		    	break ;
+ 		    case 1:
+ 		    	haunted();// karen math in method
+ 		    	break ;
+ 		    case 2:
+ 				concert();// karen math in method
+ 				break;
+ 	    }
 	}
 	/* 
      * aaron and israels part
