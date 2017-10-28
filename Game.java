@@ -249,26 +249,17 @@ public class Game
     private void chanceRain()
     {
     	Random ran = new Random();
-    	int weatherFactor = 1;
     	int cloudyWithRain = ran.nextInt(101);
-    	int rainy = 30 + (cloudyWithRain * 5) * 10;
-    	weatherFactor = 1 - rainy / 100;
-    	/*if(weatherFactor > 91)
+    	double chance =((double) cloudyWithRain * 11) * 10;
+    	double weatherFactor = chance / 100;
+    	if(weatherFactor <= (double)50)
+    	{
+    	    System.out.println("No rain, what luck!");
+    	}
+    	if(weatherFactor >= (double)50)
     	{
     	    System.out.println("THUNDERSTORM");
     	}
-    	if (weatherFactor > 80)
-    	{
-    	   System.out.println("It's raining dogs and cats!");
-    	}
-    	if (weatherFactor <= 50)
-    	{
-    	    System.out.println("No rain! What luck!");
-    	}
-    	*/
-    	// ignore, playing around with math
-    	
-    	
     	
     }
     private void specialEventGroup() 
