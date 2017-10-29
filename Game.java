@@ -306,9 +306,8 @@ private void RobberyTime
     	}
 	
 }
-private void calc 
+private void calc()
 {
-	
 
 	Scanner scan = new Scanner(System.in);
 	
