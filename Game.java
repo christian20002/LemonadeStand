@@ -274,38 +274,42 @@ public class Game
 	 	    switch (specialEvents)
 	 	    {
 	 		    case 0:
-	 		    	robbery(); // karen math in method
-	 		               // profit - profit
-	 		   RobberyTime();
-	 		    	
+	 		    	event1();
 	 		    	break ;
 	 		    case 1:
-	 		    	haunted();// karen math in method
+	 		    	event2();// karen math in method
 	 		    	         //   profit - 50/100
 	 		    	break ;
 	 		    case 2:
-	 				concert();// karen math in method
+	 				event3();// karen math in method
 	 				          // profit + 50/100
 	 				break;
 	 	    }
 	}
     
-private void RobberyTime
+private void robberyTime()
 {
-	Rando ran = new Random();
-	int chanceOfRobbery = ran.nextInt(200);
-	double rob =((double) chanceOfRobbery * 20) * 10;
+	Random ran = new Random();
+	int chanceOfRobbery = ran.nextInt(101);
+	double rob =((double) chanceOfRobbery * 12) * 10;
 	double specialEvents = rob / 100;
-	if(specialEvents <= (double)50)
+	if(specialEvents > (double)50)
     	{
     	    System.out.println("You just got Robbed!");
     	}
-	if( >= (double)50)
+	if( specialEvents <= (double)50)
     	{
     	    System.out.println("You escaped getting Robbed today !");
     	}
 	
 }
+
+private void event1()
+{
+	robberyTime();
+}
+
+
 private void calc()
 {
 
