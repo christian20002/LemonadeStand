@@ -196,8 +196,14 @@ public class Game
     			+ "wish to make ?");
     	signs = inputInt("How many Advertising signs do you wish to make? (15 cents each)");
     	
+    	
+    	 
+    	
     }
+
     
+
+
     /*
      *  Priscila, Marco and Jacob's group 
      */
@@ -242,18 +248,18 @@ public class Game
 
     private void chanceRain()
     {
-    	Random ran = new Random();
-    	int cloudyWithRain = ran.nextInt(101);
-    	double chance =((double) cloudyWithRain * 11) * 10;
-    	double weatherFactor = chance / 100;
-    	if(weatherFactor <= (double)50)
-    	{
-    	    System.out.println("No rain, what luck!");
-    	}
-    	if(weatherFactor > (double)50)
-    	{
-    	    System.out.println("THUNDERSTORM");
-    	}
+	    	Random ran = new Random();
+	    	int cloudyWithRain = ran.nextInt(101);
+	    	double chance =((double) cloudyWithRain * 11) * 10;
+	    	double weatherFactor = chance / 100;
+	    	if(weatherFactor <= (double)50)
+		    	{
+		    	    System.out.println("No rain, what luck!");
+		    	}
+	    	if(weatherFactor >= (double)50)
+		    	{
+		    	    System.out.println("THUNDERSTORM");
+		    	}
     	
     }
     private void specialEventGroup() 
@@ -265,39 +271,167 @@ public class Game
  	    int concert = 2;
  	    int specialEvents = rando.nextInt(3);
  	    
- 	    switch (specialEvents)
- 	    {
- 		    case 0:
- 		    	event1();// karen math in method
- 		    	break ;
- 		    case 1:
- 		    	event2();// karen math in method
- 		    	break ;
- 		    case 2:
- 				event 2();// karen math in method
- 				break;
- 	    }
- 				
- 		private void event1()
- 		{
- 			
- 		}
- 		
- 		private void event2()
- 		{
- 			
- 		}
- 		
- 		private void event3()
- 		{
- 			
- 		}
- 		
- 	    }
+	 	    switch (specialEvents)
+	 	    {
+	 		    case 0:
+	 		    	robbery(); // karen math in method
+	 		               // profit - profit
+	 		   RobberyTime();
+	 		    	
+	 		    	break ;
+	 		    case 1:
+	 		    	haunted();// karen math in method
+	 		    	         //   profit - 50/100
+	 		    	break ;
+	 		    case 2:
+	 				concert();// karen math in method
+	 				          // profit + 50/100
+	 				break;
+	 	    }
+	}
+    
+private void RobberyTime
+{
+	Rando ran = new Random();
+	int chanceOfRobbery = ran.nextInt(200);
+	double rob =((double) chanceOfRobbery * 20) * 10;
+	double specialEvents = rob / 100;
+	if(specialEvents <= (double)50)
+    	{
+    	    System.out.println("You just got Robbed!");
+    	}
+	if( >= (double)50)
+    	{
+    	    System.out.println("You escaped getting Robbed today !");
+    	}
 	
-	/* 
-     * aaron and israels part
-     */
+}
+private void calc 
+{
+	
+
+	Scanner scan = new Scanner(System.in);
+	
+	
+	
+	double asset = 2.00;
+	double costPerGlass = 0.02;
+	double signsCost = 0.15;
+	
+	//have to make it so that the assets change
+	String intro = "You are starting off with $2.00."+
+	               "You will choose how much you wish "+
+	               "to spend, and that will affect your "+
+	               "total amount of money.";
+	System.out.println(intro);
+	System.out.println();
+	
+	Integer glassesMade;
+	System.out.print("How many glasses do you want to make? ($0.02 each): ");
+	glassesMade = scan.nextInt();
+	double glassTotal = costPerGlass * glassesMade;// The total amount it costs to make number of chosen glasses
+	
+	Integer signsBought;
+	System.out.print("How many signs do you wish to put up? ($0.15 each): ");
+	signsBought = scan.nextInt();
+	double signsMade = (double)signsBought;// The total amount it costs to buy signs
+	
+	
+	
+	
+	
+	Integer PPG;
+	System.out.print("How much do you want to charge per glass? (in cents): ");
+	PPG = scan.nextInt();
+	double pricePerGlass = (double)PPG;
+	System.out.println();
+	System.out.println();
+	
+	
+	double N1 = (100) * 30 / (pricePerGlass * pricePerGlass);
+	double w = (0 - signsMade) * .5;
+	//adbenefit is the % increase in sales due to ads
+	double adBenefit = 1 - java.lang.Math.exp(w) * 1;
+	    
+	double N3 = java.lang.Math.floor(weatherFactor * N1 * (1 + adBenefit));
+	
+	int N2 = (int)N3;
+	int gm = (int)glassesMade;
+	int GlassesSold = java.lang.Math.min(N2, gm);
+	double income = GlassesSold * pricePerGlass / 100;
+	double expensees = ((glassesMade * costPerGlass / 100) + (signsMade * signsCost));
+	String expenses = String.format("%.2f", expensees);
+	
+	
+	
+	double assestss = asset + income - expensees;
+	String assetss = String.format("%.2f", assestss);
+	double profit = income - expensees;
+	String profits = String.format("%.2f", profit);
+	
+	    
+	
+	//showResults();
+	System.out.println("                   $$ Lemonsville Daily Financial Report $$             ");
+	System.out.println();
+	System.out.println();
+	if(GlassesSold == 1)
+	{
+	    System.out.println(GlassesSold + " glass sold"); 
+	}
+	else if(GlassesSold >= 2 || GlassesSold == 0)
+	{
+	    System.out.println(GlassesSold + " glasses sold");
+	}
+	else if(weatherFactor == 0)
+	{
+	    if(glassesMade >= 0)
+	    {
+	        //updateWeatherReport(); (to create next)
+	        //updating should create a storm pop up & be created by weather group
+	        System.out.println("All lemonade was ruined.");
+	    }
+	}
+	double pricePerGlass2 = pricePerGlass / 100;
+	System.out.println("$ " + pricePerGlass2 + " price per glass");
+	System.out.println("Income: $ " + income);
+	System.out.println();
+	System.out.println();
+	
+	if(glassesMade == 1)
+	{
+	    System.out.println(gm + " glass made");
+	}
+	else
+	{
+	    System.out.println(gm + " glasses made");
+	}
+	if(signsMade == 1)
+	{
+	    System.out.println(signsMade + " sign made");
+	    System.out.println("Expenses: $ " + expenses);
+	}
+	else
+	{
+	    System.out.println(signsMade + " signs made");
+	    System.out.println("Expenses: $ " + expenses);
+	}
+	System.out.println();
+	System.out.println();
+	System.out.println("Profit: $ " + profits);
+	System.out.println("Assets: $  " + assetss);
+}
+
+
+
+
+
+
+
+
+
+
+
 
    
     
