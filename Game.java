@@ -196,14 +196,8 @@ public class Game
     			+ "wish to make ?");
     	signs = inputInt("How many Advertising signs do you wish to make? (15 cents each)");
     	
-    	
-    	 
-    	
     }
-
     
-
-
     /*
      *  Priscila, Marco and Jacob's group 
      */
@@ -256,7 +250,7 @@ public class Game
     	{
     	    System.out.println("No rain, what luck!");
     	}
-    	if(weatherFactor >= (double)50)
+    	if(weatherFactor > (double)50)
     	{
     	    System.out.println("THUNDERSTORM");
     	}
@@ -274,16 +268,33 @@ public class Game
  	    switch (specialEvents)
  	    {
  		    case 0:
- 		    	robbery();// karen math in method
+ 		    	event1();// karen math in method
  		    	break ;
  		    case 1:
- 		    	haunted();// karen math in method
+ 		    	event2();// karen math in method
  		    	break ;
  		    case 2:
- 				concert();// karen math in method
+ 				event 2();// karen math in method
  				break;
  	    }
-	}
+ 				
+ 		private void event1()
+ 		{
+ 			
+ 		}
+ 		
+ 		private void event2()
+ 		{
+ 			
+ 		}
+ 		
+ 		private void event3()
+ 		{
+ 			
+ 		}
+ 		
+ 	    }
+	
 	/* 
      * aaron and israels part
      */
