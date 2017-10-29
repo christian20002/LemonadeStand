@@ -309,6 +309,16 @@ private void event1()
 	robberyTime();
 }
 
+private void event2()
+{
+	
+}
+
+private void event3()
+{
+	
+}
+
 
 private void calc()
 {
