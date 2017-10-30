@@ -219,13 +219,13 @@ public class Game
 	    switch (weather)
 	    {
 		    case 0:
-		    	weather0();// karen math in method
+		    	weather0();
 		    	break ;
 		    case 1:
-		    	weather1();// karen math in method
+		    	weather1();
 		    	break ;
 		    case 2:
-				weather2();// karen math in method
+				weather2();
 				
 				break;
 	    }   
@@ -233,12 +233,14 @@ public class Game
     
     private void weather0() 
     {
-    	
+    	System.out.println("Todays weather forecast is Sunny.");
+    	double weatherFactor = 1;
     }
     
     private void weather1() 
     {
-    	
+    	System.out.println("Todays weather forecast is stupidly dry.");
+    	double weatherFactor = 2;
     }
     
     private void weather2() 
@@ -251,14 +253,16 @@ public class Game
 	    	Random ran = new Random();
 	    	int cloudyWithRain = ran.nextInt(101);
 	    	double chance =((double) cloudyWithRain * 11) * 10;
-	    	double weatherFactor = chance / 100;
-	    	if(weatherFactor <= (double)50)
+	    	double factor = chance / 100;
+	    	if(factor <= (double)50)
 		    	{
 		    	    System.out.println("No rain, what luck!");
+		    	    double weatherFactor = factor; 
 		    	}
-	    	if(weatherFactor >= (double)50)
+	    	if(factor >= (double)50)
 		    	{
 		    	    System.out.println("THUNDERSTORM");
+		    	    double weatherFactor = 0; 
 		    	}
     	
     }
