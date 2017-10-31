@@ -184,18 +184,40 @@ public class Game
     }
     
     // Ismael and Mike's
-    
-    int glasses = 0;
-    int signs = 0;
-    private void day() {
+    	Scanner scan = new Scanner(System.in);
     	
-    
-    	print("On day " +day+ "the cost of lemonade is " +cost);
-    	print(PROD+" stand "+standNum+"\t assets +" +assets);
-    	glasses = inputInt("how many glasses of lemonade do you\n"
-    			+ "wish to make ?");
-    	signs = inputInt("How many Advertising signs do you wish to make? (15 cents each)");
     	
+    	
+    	double asset = 2.00;
+    	double costPerGlass = 0.02;
+    	double signsCost = 0.15;
+    	
+    	//have to make it so that the assets change
+    	String intro = "You are starting off with $2.00."+
+    	               "You will choose how much you wish "+
+    	               "to spend, and that will affect your "+
+    	               "total amount of money.";
+    	System.out.println(intro);
+    	System.out.println();
+    	
+    	Integer glassesMade;
+    	System.out.print("How many glasses do you want to make? ($0.02 each): ");
+    	glassesMade = scan.nextInt();
+    	double glassTotal = costPerGlass * glassesMade;// The total amount it costs to make number of chosen glasses
+    	
+    	Integer signsBought;
+    	System.out.print("How many signs do you wish to put up? ($0.15 each): ");
+    	signsBought = scan.nextInt();
+    	double signsMade = (double)signsBought;// The total amount it costs to buy signs
+    	
+    	
+    	
+    	
+    	
+    	Integer PPG;
+    	System.out.print("How much do you want to charge per glass? (in cents): ");
+    	PPG = scan.nextInt();
+    	double pricePerGlass = (double)PPG;
     	
     	 
     	
@@ -442,7 +464,7 @@ private void calc()
 /**
 * Stores a user's high score for use in a video game.
 * Includes the user's name (usually as 3 initials) and
-* their score.  The name is immutable, but the score is
+* their score. ï¿½The name is immutable, but the score is
 * not.
 * <p>
 * Also implements Comparable.
@@ -450,152 +472,152 @@ private void calc()
 public class HighScore implements Comparable<HighScore> 
 {
 
- //class variables
- private static int count = 0;
- public static final int MAX_SCORE = 9000;
+ï¿½//class variables
+ï¿½private static int count = 0;
+ï¿½public static final int MAX_SCORE = 9000;
 
- //instance variables
- private String name;
- private int score;
+ï¿½//instance variables
+ï¿½private String name;
+ï¿½private int score;
 
- /**
-  * Constructs a new HighScore object with the given
-  * name and score.  Enforces the same restrictions on
-  * score's value as {@link #setScore}.
-  */
- public HighScore(String name, int score) {
-   this.name = name;
-   this.setScore(score);
-   HighScore.count++;  //made another instance
- }
+ï¿½/**
+ï¿½ï¿½* Constructs a new HighScore object with the given
+ï¿½ï¿½* name and score. ï¿½Enforces the same restrictions on
+ï¿½ï¿½* score's value as {@link #setScore}.
+ï¿½ï¿½*/
+ï¿½public HighScore(String name, int score) {
+ï¿½ï¿½ï¿½this.name = name;
+ï¿½ï¿½ï¿½this.setScore(score);
+ï¿½ï¿½ï¿½HighScore.count++; ï¿½//made another instance
+ï¿½}
 
- /**
-  * Constructs a new HighScore with a score of 0.
-  */
- public HighScore(String name) {
-   //reusing other constructor
-   this(name, 0);
- }
-
-
- //instance methods
-
- /**
-  * Can be used to sort HighScores into descending order.
-  * That is, a HighScore's natural order is greatest score first.
-  * See {@link Comparable} interface for more.
-  * 
-  * Considers only the score part of a HighScore object when sorting.
-  */
- public int compareTo(HighScore other) {
-   /*
-    * Has to return:
-    *  < 0 if this score is < than (comes before) the given other 
-
- score
-    *  > 0 if this score is > than (comes after) the given other score
-    * == 0 if the tw9o scores are equal
-    *
-    * Using subtraction is a good way to get this done quickly.
-    * Normally, we'd use this.score - other.score, but I want
-    * high scores be sorted in reverse order (as is traditional
-    * this high scores).  Thus:
-    */
-   return other.score - this.score;
- }public String getName() {
-   return this.name;
- }
-
- public int getScore() {
-   return this.score;
- }
-
- /**
-  * Changes this HighScore's score to the given value.
-  * The new score value must be between 0 and HighScore.MAX_SCORE.
-  * If less than 0, it will be set to 0; if over MAX_SCORE,
-  * it will be set to MAX_SCORE.
-  */
- public void setScore(int score) {
-   if (score < 0) {
-     this.score = 0;
-   }else if (score > MAX_SCORE) {
-     this.score = MAX_SCORE;
-   }else {
-     this.score = score;
-   }
- }
-
- /**
-  * Returns a String of the form "NAME:\tscore",
-  * where \t is a tab character.
-  */
- public String toString() {
-   return this.name + ":\t" + this.score;
- }
+ï¿½/**
+ï¿½ï¿½* Constructs a new HighScore with a score of 0.
+ï¿½ï¿½*/
+ï¿½public HighScore(String name) {
+ï¿½ï¿½ï¿½//reusing other constructor
+ï¿½ï¿½ï¿½this(name, 0);
+ï¿½}
 
 
- //class methods
+ï¿½//instance methods
 
- /**
-  * Returns the total number of HighScore objects created
-  * so far.
-  */
- public static int getScoreCount() {
-   return HighScore.count;
- }
+ï¿½/**
+ï¿½ï¿½* Can be used to sort HighScores into descending order.
+ï¿½ï¿½* That is, a HighScore's natural order is greatest score first.
+ï¿½ï¿½* See {@link Comparable} interface for more.
+ï¿½ï¿½* 
+ï¿½ï¿½* Considers only the score part of a HighScore object when sorting.
+ï¿½ï¿½*/
+ï¿½public int compareTo(HighScore other) {
+ï¿½ï¿½ï¿½/*
+ï¿½ï¿½ï¿½ï¿½* Has to return:
+ï¿½ï¿½ï¿½ï¿½* ï¿½< 0 if this score is < than (comes before) the given other 
 
- /**
-  * Tests this class by creating and printing a few sample
-  * HighScore objects.
-  */
- public static void main(String[] args) {
+ï¿½score
+ï¿½ï¿½ï¿½ï¿½* ï¿½> 0 if this score is > than (comes after) the given other score
+ï¿½ï¿½ï¿½ï¿½* == 0 if the tw9o scores are equal
+ï¿½ï¿½ï¿½ï¿½*
+ï¿½ï¿½ï¿½ï¿½* Using subtraction is a good way to get this done quickly.
+ï¿½ï¿½ï¿½ï¿½* Normally, we'd use this.score - other.score, but I want
+ï¿½ï¿½ï¿½ï¿½* high scores be sorted in reverse order (as is traditional
+ï¿½ï¿½ï¿½ï¿½* this high scores). ï¿½Thus:
+ï¿½ï¿½ï¿½ï¿½*/
+ï¿½ï¿½ï¿½return other.score - this.score;
+ï¿½}public String getName() {
+ï¿½ï¿½ï¿½return this.name;
+ï¿½}
 
-   //create an array of HighScores
-   HighScore[] scores = new HighScore[5];
-   for (int i = 0; i < scores.length; i++) {
-     char letter = (char) ('A' + i);
-     String initials = "" + letter + letter + letter;
-     scores[i] = new HighScore(initials, (i * 100) + 100);
-   }
+ï¿½public int getScore() {
+ï¿½ï¿½ï¿½return this.score;
+ï¿½}
 
-   //print scores (test toString)
-   System.out.println("Array of HighScores: ");
-   for (int i = 0; i < scores.length; i++) {
-     System.out.println(scores[i]);
-   }
+ï¿½/**
+ï¿½ï¿½* Changes this HighScore's score to the given value.
+ï¿½ï¿½* The new score value must be between 0 and HighScore.MAX_SCORE.
+ï¿½ï¿½* If less than 0, it will be set to 0; if over MAX_SCORE,
+ï¿½ï¿½* it will be set to MAX_SCORE.
+ï¿½ï¿½*/
+ï¿½public void setScore(int score) {
+ï¿½ï¿½ï¿½if (score < 0) {
+ï¿½ï¿½ï¿½ï¿½ï¿½this.score = 0;
+ï¿½ï¿½ï¿½}else if (score > MAX_SCORE) {
+ï¿½ï¿½ï¿½ï¿½ï¿½this.score = MAX_SCORE;
+ï¿½ï¿½ï¿½}else {
+ï¿½ï¿½ï¿½ï¿½ï¿½this.score = score;
+ï¿½ï¿½ï¿½}
+ï¿½}
 
-   //test getScoreCount
-   System.out.println();
-   System.out.print("Created [5] scores? ");
-   System.out.println(HighScore.getScoreCount() == scores.length);
+ï¿½/**
+ï¿½ï¿½* Returns a String of the form "NAME:\tscore",
+ï¿½ï¿½* where \t is a tab character.
+ï¿½ï¿½*/
+ï¿½public String toString() {
+ï¿½ï¿½ï¿½return this.name + ":\t" + this.score;
+ï¿½}
 
-   //test accessors
-   System.out.println("First score: ");
-   System.out.println("Name: " + scores[0].getName());
-   System.out.println("Score: " + scores[0].getScore());
 
-   //test 
-   System.out.println();    
-   System.out.println("Changing first score to...");
-   scores[0].setScore(-5);
-   System.out.println("negative.  [0]: " + scores[0].getScore());
-   scores[0].setScore(10000);
-   System.out.println("over 9000.  [9000]: " + scores[0].getScore());
-   scores[0].setScore(5000);
-   System.out.println("to 5000.  [5000]: " + scores[0].getScore());
+ï¿½//class methods
 
-   //test 2
-   System.out.println();
-   System.out.println("Setting 3rd score to 1000 and then sorting.");
-   scores[2].setScore(1000);
-   //this sort method only works because HighScore implements Comparable
-   java.util.Arrays.sort(scores);
-   System.out.println("Results should be in decreasing score order: ");
-   for (HighScore hs : scores) {
-     System.out.println(hs);
-   }
- }
+ï¿½/**
+ï¿½ï¿½* Returns the total number of HighScore objects created
+ï¿½ï¿½* so far.
+ï¿½ï¿½*/
+ï¿½public static int getScoreCount() {
+ï¿½ï¿½ï¿½return HighScore.count;
+ï¿½}
+
+ï¿½/**
+ï¿½ï¿½* Tests this class by creating and printing a few sample
+ï¿½ï¿½* HighScore objects.
+ï¿½ï¿½*/
+ï¿½public static void main(String[] args) {
+
+ï¿½ï¿½ï¿½//create an array of HighScores
+ï¿½ï¿½ï¿½HighScore[] scores = new HighScore[5];
+ï¿½ï¿½ï¿½for (int i = 0; i < scores.length; i++) {
+ï¿½ï¿½ï¿½ï¿½ï¿½char letter = (char) ('A' + i);
+ï¿½ï¿½ï¿½ï¿½ï¿½String initials = "" + letter + letter + letter;
+ï¿½ï¿½ï¿½ï¿½ï¿½scores[i] = new HighScore(initials, (i * 100) + 100);
+ï¿½ï¿½ï¿½}
+
+ï¿½ï¿½ï¿½//print scores (test toString)
+ï¿½ï¿½ï¿½System.out.println("Array of HighScores: ");
+ï¿½ï¿½ï¿½for (int i = 0; i < scores.length; i++) {
+ï¿½ï¿½ï¿½ï¿½ï¿½System.out.println(scores[i]);
+ï¿½ï¿½ï¿½}
+
+ï¿½ï¿½ï¿½//test getScoreCount
+ï¿½ï¿½ï¿½System.out.println();
+ï¿½ï¿½ï¿½System.out.print("Created [5] scores? ");
+ï¿½ï¿½ï¿½System.out.println(HighScore.getScoreCount() == scores.length);
+
+ï¿½ï¿½ï¿½//test accessors
+ï¿½ï¿½ï¿½System.out.println("First score: ");
+ï¿½ï¿½ï¿½System.out.println("Name: " + scores[0].getName());
+ï¿½ï¿½ï¿½System.out.println("Score: " + scores[0].getScore());
+
+ï¿½ï¿½ï¿½//test 
+ï¿½ï¿½ï¿½System.out.println(); ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½System.out.println("Changing first score to...");
+ï¿½ï¿½ï¿½scores[0].setScore(-5);
+ï¿½ï¿½ï¿½System.out.println("negative. ï¿½[0]: " + scores[0].getScore());
+ï¿½ï¿½ï¿½scores[0].setScore(10000);
+ï¿½ï¿½ï¿½System.out.println("over 9000. ï¿½[9000]: " + scores[0].getScore());
+ï¿½ï¿½ï¿½scores[0].setScore(5000);
+ï¿½ï¿½ï¿½System.out.println("to 5000. ï¿½[5000]: " + scores[0].getScore());
+
+ï¿½ï¿½ï¿½//test 2
+ï¿½ï¿½ï¿½System.out.println();
+ï¿½ï¿½ï¿½System.out.println("Setting 3rd score to 1000 and then sorting.");
+ï¿½ï¿½ï¿½scores[2].setScore(1000);
+ï¿½ï¿½ï¿½//this sort method only works because HighScore implements Comparable
+ï¿½ï¿½ï¿½java.util.Arrays.sort(scores);
+ï¿½ï¿½ï¿½System.out.println("Results should be in decreasing score order: ");
+ï¿½ï¿½ï¿½for (HighScore hs : scores) {
+ï¿½ï¿½ï¿½ï¿½ï¿½System.out.println(hs);
+ï¿½ï¿½ï¿½}
+ï¿½}
 
 }
 
