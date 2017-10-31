@@ -239,7 +239,7 @@ public class Game
     
     private void weather1() 
     {
-    	System.out.println("Todays weather forecast is stupidly dry.");
+    	System.out.println("Todays weather forecast is extremely dry.");
     	double weatherFactor = 2;
     }
     
@@ -256,12 +256,12 @@ public class Game
 	    	double factor = chance / 100;
 	    	if(factor <= (double)50)
 		    	{
-		    	    System.out.println("No rain, what luck!");
+		    	    System.out.println("Todays weather forecast is: No rain, what luck!");
 		    	    double weatherFactor = factor; 
 		    	}
 	    	if(factor >= (double)50)
 		    	{
-		    	    System.out.println("THUNDERSTORM");
+		    	    System.out.println("Todays weather forecast is: THUNDERSTORM!");
 		    	    double weatherFactor = 0; 
 		    	}
     	
@@ -447,7 +447,8 @@ private void calc()
 * <p>
 * Also implements Comparable.
 */
-public class HighScore implements Comparable<HighScore> {
+public class HighScore implements Comparable<HighScore> 
+{
 
  //class variables
  private static int count = 0;
