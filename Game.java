@@ -189,53 +189,7 @@ public class Game
     }
     
     // Ismael and Mike's
-    	Scanner scan = new Scanner(System.in);
-    	
-<<<<<<< HEAD
-    
-    	print("On day " +day+ " the cost of lemonade is " +cost);
-    	print(PROD+" stand "+standNum+"\t assets +" +asset);
-    	glasses = inputInt("how many glasses of lemonade do you\n"
-    			+ "wish to make ?");
-    	signs = inputInt("How many Advertising signs do you wish to make? (15 cents each)");
-=======
->>>>>>> branch 'master' of https://github.com/phscodes/LemonadeStand.git
-    	
-    	
-    	double asset = 2.00;
-    	double costPerGlass = 0.02;
-    	double signsCost = 0.15;
-    	
-    	//have to make it so that the assets change
-    	String intro = "You are starting off with $2.00."+
-    	               "You will choose how much you wish "+
-    	               "to spend, and that will affect your "+
-    	               "total amount of money.";
-    	System.out.println(intro);
-    	System.out.println();
-    	
-    	Integer glassesMade;
-    	System.out.print("How many glasses do you want to make? ($0.02 each): ");
-    	glassesMade = scan.nextInt();
-    	double glassTotal = costPerGlass * glassesMade;// The total amount it costs to make number of chosen glasses
-    	
-    	Integer signsBought;
-    	System.out.print("How many signs do you wish to put up? ($0.15 each): ");
-    	signsBought = scan.nextInt();
-    	double signsMade = (double)signsBought;// The total amount it costs to buy signs
-    	
-    	
-    	
-    	
-    	
-    	Integer PPG;
-    	System.out.print("How much do you want to charge per glass? (in cents): ");
-    	PPG = scan.nextInt();
-    	double pricePerGlass = (double)PPG;
-    	
-    	 
-    	
-    }
+
 
     
 
