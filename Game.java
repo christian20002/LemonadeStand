@@ -490,7 +490,9 @@ private void calc()
         if(yesNo("Would you like to end the game?")) {
         			break;
         		}
+        clear();
         }
+    
         
     }
     
