@@ -1,10 +1,4 @@
 
-/**
- * Write a description of class Game here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 
 import javax.sound.midi.*;
 
@@ -16,6 +10,7 @@ import java.io.Console;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Time;
+
 public class Game
 {
     // instance variables - replace the example below with your own
@@ -41,7 +36,9 @@ public class Game
     public int day = 1;
     public int standNum = 1;
     public double asset = 2.00;
+    public double profit = 0;
     public double cost = .02;
+    public int GlassesSold;
     
     
     Scanner sn;
@@ -263,21 +260,26 @@ public class Game
  	    int robbery = 0;
  	    int haunted = 1;
  	    int concert = 2;
- 	    int specialEvents = rando.nextInt(3);
+ 	    int nothing = 3;
+ 	    int specialEvents = rando.nextInt(4);
  	    
 	 	    switch (specialEvents)
 	 	    {
 	 		    case 0:
-	 		    	event1();
+	 		    	robberyTime();
 	 		    	break ;
+	 		    
 	 		    case 1:
-	 		    	event2();// karen math in method
-	 		    	         //   profit - 50/100
+	 		    	hauntedTime();// karen math in method      //   profit - 50/100
 	 		    	break ;
+	 		    
 	 		    case 2:
-	 				event3();// karen math in method
-	 				          // profit + 50/100
-	 				break;
+	 			concertTime();// karen math in method         // profit + 50/100
+	 			break;
+	 		    
+	 		    case 3:
+	 		    	nothingTime();
+	 		    	break;
 	 	    }
 	}
     
@@ -290,6 +292,7 @@ private void robberyTime()
 	if(specialEvents > (double)50)
     	{
     	    System.out.println("You just got Robbed!");
+    	    asset = asset*.25;
     	}
 	if( specialEvents <= (double)50)
     	{
@@ -298,19 +301,21 @@ private void robberyTime()
 	
 }
 
-private void event1()
+private void hauntedTime()
 {
-	robberyTime();
+	print("UH OH! The non-copyright infringing Ghostblasters didn't show up to work today, so no one showed up to your stand. Your profit for the day a is 0.");
+	GlassesSold = 0;
 }
 
-private void event2()
+private void concertTime()
 {
-	
+	print("Great to be you! Some performer you never heard of has come to town. Business is booming and you gain extra money today.");
+	GlassesSold *= 1.25;
 }
 
-private void event3()
+private void nothingTime()
 {
-	
+	print("How boring nothing happened...");
 }
 
 
@@ -364,24 +369,34 @@ private void calc()
 	
 	int N2 = (int)N3;
 	int gm = (int)glassesMade;
-	int GlassesSold = java.lang.Math.min(N2, gm);
+	GlassesSold = java.lang.Math.min(N2, gm);
+	specialEventGroup();
 	double income = GlassesSold * pricePerGlass / 100;
-	double expensees = ((glassesMade * costPerGlass / 100) + (signsMade * signsCost));
+	double expensees = ((glassTotal) + (signsMade * signsCost));
 	String expenses = String.format("%.2f", expensees);
 	
 	
 	
-	double assestss = asset + income - expensees;
-	String assetss = String.format("%.2f", assestss);
-	double profit = income - expensees;
+	
+	profit = income - expensees;
 	asset += profit;
+	
+	
+	
 	String profits = String.format("%.2f", profit);
+	String assetss = String.format("%.2f", asset);
 	
 	    
 	
+	String  i = inputTxt("");
+	
+	
+	
+	
+	
 	//showResults();
 	System.out.println("                   $$ Lemonsville Daily Financial Report $$             ");
-	System.out.println();
+	System.out.println("						Day: " +day+ "					  ");
 	System.out.println();
 	if(GlassesSold == 1)
 	{
@@ -482,7 +497,7 @@ private void calc()
         
         intro(); //present introduction information
         
-        while(true)
+        while(day <= 10)
         {
         weatherScreen();
         WeatherGroup();
@@ -490,8 +505,11 @@ private void calc()
         if(yesNo("Would you like to end the game?")) {
         			break;
         		}
+        day++;
         clear();
         }
+        print("Your Final Score is: " + asset+ " dollars! Congrats.");
+        String i = inputTxt("");
     
         
     }
