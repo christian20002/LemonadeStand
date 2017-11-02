@@ -569,7 +569,8 @@ private void calc()
         day++;
         clear();
         }
-        print("Your Final Score is: " + asset+ " dollars! Congrats.");
+        String assetss = String.format("%.2f", asset);
+        print("Your Final Score is: " + assetss + " dollars! Congrats.");
         String i = inputTxt("");
     
         
