@@ -321,44 +321,105 @@ private void nothingTime()
 
 private void calc()
 {
-
 	Scanner scan = new Scanner(System.in);
+    
+    
+    
+    
+    
+    double costPerGlass = 0.02;
+    double signsCost = 0.15;
+    
+    //have to make it so that the assets change
+    String intro = "You are starting off with " + asset + " dollars." +
+                   "You will choose how much you wish "+
+                   "to spend, and that will affect your "+
+                   "total amount of money.";
+    System.out.println(intro);
+    System.out.println();
+    int glassesMade;
+        do {
+      System.out.print("How many glasses do you want to make? ($0.02 each): ");
+      while(!scan.hasNextInt()) {
+        String input = scan.next();
+        System.out.printf("'%s' is not a valid number.\n", input);
+      }
+      glassesMade = scan.nextInt();
+    } while(glassesMade < 0);
+    
+   // prints cost and assets
+    double checkGMValidation = glassesMade * costPerGlass;
+    
+    double newAsset = asset - checkGMValidation;
+    
+   
+    if(checkGMValidation > asset) {
+        while(checkGMValidation > asset) {
+            System.out.print("\nYou don't have enough money");
+            do {
+                System.out.print("\nHow many glasses do you want to make? ($0.02 each): ");
+            while(!scan.hasNextInt()) {
+                String input = scan.next();
+                System.out.printf("'%s' is not a valid number.\n", input);
+            }
+            glassesMade = scan.nextInt();
+            checkGMValidation = glassesMade * costPerGlass;
+              
+                newAsset = asset - checkGMValidation;
+               
+            } while(glassesMade < 0);
+        }
+        
+    }
+
+
+
+    int signsMade;    
+    do {
+      System.out.print("\nHow many signs do you wish to put up? ($0.15 each): ");
+      while(!scan.hasNextInt()) {
+        String input = scan.next();
+        System.out.printf("'%s' is not a valid number.\n", input);
+      }
+      signsMade = scan.nextInt();
+    } while(signsMade < 0);
+    
+    double checkSBValidation = signsMade * signsCost;
+    
+    newAsset -= checkSBValidation;
+    
+    double assetSB;
+    
+        if(checkSBValidation > newAsset) {
+            while(checkSBValidation > newAsset) {
+                System.out.print("\nYou don't have enough money");
+            do {
+                System.out.print("\nHow many signs do you wish to put up? ($0.15 each): ");
+            while(!scan.hasNextInt()) {
+                String input = scan.next();
+                System.out.printf("'%s' is not a valid number.\n", input);
+                }
+            signsMade = scan.nextInt();
+            checkSBValidation = signsMade * signsCost;
+                
+                newAsset = asset - checkSBValidation;
+            } while(signsMade < 0);
+            }
+        
+    }
+
+    int pricePerGlass;
+    do {
+      System.out.print("\nHow much do you want to charge per glass? (in cents): ");
+      while(!scan.hasNextInt()) {
+        String input = scan.next();
+        System.out.printf("'%s' is not a valid number.\n", input);
+      }
+      pricePerGlass = scan.nextInt();
+    } while(pricePerGlass < 0);
 	
-	
-	
-	
-	double costPerGlass = 0.02;
-	double signsCost = 0.15;
-	
-	//have to make it so that the assets change
-	String intro = "You are starting off with " + asset+ " dollars." +
-	               "You will choose how much you wish "+
-	               "to spend, and that will affect your "+
-	               "total amount of money.";
-	System.out.println(intro);
-	System.out.println();
-	
-	Integer glassesMade;
-	System.out.print("How many glasses do you want to make? ($0.02 each): ");
-	glassesMade = scan.nextInt();
-	double glassTotal = costPerGlass * glassesMade;// The total amount it costs to make number of chosen glasses
-	
-	Integer signsBought;
-	System.out.print("How many signs do you wish to put up? ($0.15 each): ");
-	signsBought = scan.nextInt();
-	double signsMade = (double)signsBought;// The total amount it costs to buy signs
-	
-	
-	
-	
-	
-	Integer PPG;
-	System.out.print("How much do you want to charge per glass? (in cents): ");
-	PPG = scan.nextInt();
-	double pricePerGlass = (double)PPG;
-	System.out.println();
-	System.out.println();
-	
+
+    double glassTotal = costPerGlass * glassesMade;// The total amount it costs to make number of chosen glasses
 	
 	double N1 = (100) * 30 / (pricePerGlass * pricePerGlass);
 	double w = (0 - signsMade) * .5;
