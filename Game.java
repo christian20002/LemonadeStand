@@ -141,6 +141,8 @@ public class Game
     		char[] chars = new char[length];
     		Arrays.fill(chars, c);
     		System.out.print(String.valueOf(chars));
+    		System.out.print('\u000C');
+    		System.out.flush();
     	}
      
     		private void print(String text)
@@ -298,12 +300,12 @@ private void robberyTime()
 	int chanceOfRobbery = ran.nextInt(101);
 	double rob =((double) chanceOfRobbery * 12) * 10;
 	double specialEvents = rob / 100;
-	if(specialEvents > (double)50)
+	if(specialEvents > (double)70)
     	{
     	    System.out.println("You just got Robbed!");
     	    asset = asset*.25;
     	}
-	if( specialEvents <= (double)50)
+	else
     	{
     	    System.out.println("You escaped getting Robbed today !");
     	}
@@ -312,8 +314,17 @@ private void robberyTime()
 
 private void hauntedTime()
 {
+	print("You feel a spooky feeling...");
+	
+	Random ran = new Random();
+	if(ran.nextInt(100) >75) {
 	print("UH OH! The non-copyright infringing Ghostblasters didn't show up to work today, so no one showed up to your stand. Your profit for the day a is 0.");
 	GlassesSold = 0;
+	try{sevenNation();} catch (Exception e) {}
+	}
+	else {
+		print("The non-copyright infringing Ghostblasters came and saved the day");
+	}
 }
 
 private void concertTime()
@@ -567,6 +578,9 @@ private void calc()
         weatherScreen();
         WeatherGroup();
         calc();
+        if (asset < 0) {
+        		break;
+        }
         if(yesNo("Would you like to end the game?")) {
         			break;
         		}
@@ -574,7 +588,13 @@ private void calc()
         clear();
         }
         String assetss = String.format("%.2f", asset);
+        if (asset < 0) {
+        		print("YA DUN GOOFED");
+        		print("You lost all of your money!");
+        }
+        else {
         print("Your Final Score is: " + assetss + " dollars! Congrats.");
+        }
         String i = inputTxt("");
     
         
