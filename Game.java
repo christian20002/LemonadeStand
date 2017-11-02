@@ -121,11 +121,15 @@ public class Game
 		asset = inputInt("\n"
 				+ "player no. 1, how much money (assets)\n"
 				+ "did you have?");
+		if (asset > 10) {
 		print("Just to be fair, let's make that $10.00 ");
+		asset=10;
+		}
 		print("\n"
 				+ "...ready to begin?");
 		String i = sn.next();
 		clear();
+		
 	}
      
    //this method acts like it clears the screen.
