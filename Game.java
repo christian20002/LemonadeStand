@@ -10,12 +10,22 @@ import java.io.Console;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Time;
+import java.text.DecimalFormat;
 
 public class Game
 {
     // instance variables - replace the example below with your own
-    private int x;
-
+    DecimalFormat df;
+    
+    final int TEMPO = 126*1000; //tempo of song
+    final int WHOLE = TEMPO/60;
+    final int HALF = WHOLE/2;
+    final int QUART = HALF/2;
+    final int EIGTH = QUART/2;
+    final int SIXT  = EIGTH/2;
+    
+    final int TRIP = HALF/3;
+    
     MidiChannel[] mChannels;
     
     
@@ -85,7 +95,6 @@ public class Game
         "A GLASS (THIS MAY CHANGE IN THE FUTURE).");
         
         inputTxt("PRESS ENTER TO CONTINUE, ESC TO END...");
-        String i = sn.nextLine();
         clear();
         
         
@@ -96,7 +105,6 @@ public class Game
         "the income from sales and your expenses.");
         
         inputTxt("Press enter to continue, esc to end...");
-        String b = sn.nextLine();
         clear();
         
     }
@@ -138,10 +146,7 @@ public class Game
     		
     	
     
-    /*
-     * TODO: Create actual weather randomizing system.
-     
-     */
+    
     private void weatherScreen() 
     {
     		System.out.println("Now let's look at the weather report to see how the day will be."); 
@@ -331,9 +336,9 @@ private void calc()
     double signsCost = 0.15;
     
     //have to make it so that the assets change
-    String intro = "You are starting off with " + asset + " dollars." +
-                   "You will choose how much you wish "+
-                   "to spend, and that will affect your "+
+    String intro = "You are starting off with " + form(asset) + " dollars." +
+                   "You will choose how much you wish \n"+
+                   "to spend, and that will affect your \n"+
                    "total amount of money.";
     System.out.println(intro);
     System.out.println();
@@ -408,7 +413,7 @@ private void calc()
         
     }
 
-    int pricePerGlass;
+    double pricePerGlass;
     do {
       System.out.print("\nHow much do you want to charge per glass? (in cents): ");
       while(!scan.hasNextInt()) {
@@ -432,6 +437,7 @@ private void calc()
 	int gm = (int)glassesMade;
 	GlassesSold = java.lang.Math.min(N2, gm);
 	specialEventGroup();
+	GlassesSold = Math.min(GlassesSold, gm);
 	double income = GlassesSold * pricePerGlass / 100;
 	double expensees = ((glassTotal) + (signsMade * signsCost));
 	String expenses = String.format("%.2f", expensees);
@@ -457,7 +463,7 @@ private void calc()
 	
 	//showResults();
 	System.out.println("                   $$ Lemonsville Daily Financial Report $$             ");
-	System.out.println("						Day: " +day+ "					  ");
+	System.out.println("					Day: " +day+ "					  ");
 	System.out.println();
 	if(GlassesSold == 1)
 	{
@@ -477,7 +483,7 @@ private void calc()
 	    }
 	}
 	double pricePerGlass2 = pricePerGlass / 100;
-	System.out.println("$ " + pricePerGlass2 + " price per glass");
+	System.out.println("$ " + form(pricePerGlass2) + " price per glass");
 	System.out.println("Income: $ " + income);
 	System.out.println();
 	System.out.println();
@@ -516,11 +522,15 @@ private void calc()
     		
     }
     	     
+    private String form(double num){
+    	return df.format(num);
+    }
      
     
     public Game()
     {
         sn = new Scanner(System.in); //initialize critical objects
+        df = new DecimalFormat("0.00");
         
         /*all this stuff here is to add music..
          * @author Christian
@@ -534,19 +544,9 @@ private void calc()
         	
         	midiSynth.loadInstrument(instr[0]);
         	
-        	mChannels[0].noteOn(60, 1000);
-        	try {Thread.sleep(1000);
-        	} catch(InterruptedException e) { }
-        	mChannels[0].noteOff(60);
-        	 
-        	  playNote(52,750);
-          playNote(52,250);
-          playNote(55,250);
-          playNote(52,250);
-          playNote(50,250);
-          playNote(48,500);
-          playNote(47,250);
 
+        	 
+            sevenNation();
 
 
 
@@ -575,7 +575,15 @@ private void calc()
         
     }
     
-     
+     private void sevenNation() throws InterruptedException, MidiUnavailableException{
+    	 playNote(52,QUART+EIGTH);
+         playNote(52,EIGTH);
+         playNote(55,EIGTH+SIXT);
+         playNote(52,EIGTH+SIXT);
+         playNote(50,EIGTH);
+         playNote(48,HALF);
+         playNote(47,HALF);
+     }
 
     
     public static void main(String[] args){
