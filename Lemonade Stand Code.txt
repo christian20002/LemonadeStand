@@ -1,0 +1,923 @@
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+
+import javax.sound.midi.Instrument;
+import javax.sound.midi.MidiChannel;
+import javax.sound.midi.MidiSystem;
+import javax.sound.midi.MidiUnavailableException;
+import javax.sound.midi.Synthesizer;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class Game
+{
+	// instance variables - replace the example below with your own
+	
+	DecimalFormat df;
+	
+	final int TEMPO = 126*1000; //tempo of song
+    final int WHOLE = TEMPO/60;
+    final int HALF = WHOLE/2;
+    final int QUART = HALF/2;
+    final int EIGTH = QUART/2;
+    final int SIXT  = EIGTH/2;
+    final int TRIP = HALF/3;
+    final int bpm = 126;
+    final int quart = 126/60;
+    final int half = 0;
+   
+    MidiChannel[] mChannels;
+ 
+    int weatherFactor;
+
+    final String PROD = "LEMONADE";
+	final String LEM = "LEMON";
+	final String UNT = "GLASSES";
+	final String SUGAR = "SUGAR,";
+	
+	
+	public int day = 1;
+	public int standNum = 1;
+	public double asset = 2.00;
+	public double profit = 0;
+	public double cost = .02;
+	public int GlassesSold;
+	
+	public int glassesMade;
+	public double pricePerSign;
+	
+	public double costPerSign = .15;
+	public int signsMade;
+	double costPerGlass = 0.02;
+	
+	Scanner sn;
+	JFrame window = new JFrame();
+	Container con;
+	JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, playerPanel, inputPanel, inputPanel_Glasses, inputPanel_Signs, inputPanel_Price;
+	JLabel titleNameLabel, assetLabel, assetLabelNum, dayLabel, dayName, inputLabel, signLabel, priceLabel, glassesLabel, glassCost, signCost, totalCost;
+	JButton startButton, choice1,  choice2,  choice3,  choice4;
+	JTextArea mainTextArea;
+	Font titleFont = new Font("Times New Roman", Font.PLAIN, 64);
+	Font normalFont = new Font("Times New Roman", Font.PLAIN, 20);
+	TitleScreenHandler tsHandler = new TitleScreenHandler();
+	ChoiceHandler cHandler = new ChoiceHandler(); 
+	String position;
+	
+	JPanel textPanel;
+	JLabel  textLabel;
+	Font inputFont = new Font("Times New Roman", Font.PLAIN, 26);
+	JTextField jtf, jtf_Glasses, jtf_Signs, jtf_Price;
+	JButton enter;
+	InputHandler iHandler = new InputHandler();
+	
+	public Game()
+	{
+		//window
+		window.setSize(800, 600);
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.getContentPane().setBackground(Color.black);
+		window.setLayout(null);
+		
+		con = window.getContentPane();
+		
+		titleNamePanel = new JPanel();
+		titleNamePanel.setBounds(100, 100, 600, 100);
+		titleNamePanel.setBackground(Color.black);
+		titleNameLabel = new JLabel("LEMONADE STAND");
+		titleNameLabel.setForeground(Color.white);
+		titleNameLabel.setFont(titleFont);
+		
+		startButtonPanel = new JPanel();
+		startButtonPanel.setBounds(300, 400, 200, 100);
+		startButtonPanel.setBackground(Color.black);
+		
+		startButton = new JButton("START");
+		startButton.setBackground(Color.black);
+		startButton.setForeground(Color.white);
+		startButton.setFont(normalFont);
+		startButton.addActionListener(tsHandler);
+		startButton.setFocusPainted(false);
+		
+		startButtonPanel.add(startButton);
+		titleNamePanel.add(titleNameLabel);
+		con.add(titleNamePanel);
+		con.add(startButtonPanel);
+		
+		sn = new Scanner(System.in); //initialize critical objects
+		df = new DecimalFormat("0.00");
+		window.setVisible(true);
+		/*all this stuff here is to add music..
+		 * @author Christian
+		 */
+		try {
+			Synthesizer midiSynth = MidiSystem.getSynthesizer();
+			midiSynth.open();
+			Instrument[] instr = midiSynth.getDefaultSoundbank().getInstruments();
+			mChannels = midiSynth.getChannels();
+			midiSynth.loadInstrument(instr[0]); 
+		    sevenNation();
+		    
+		} catch(MidiUnavailableException e) {} catch(InterruptedException d) {}
+		    	
+		  
+		
+		        
+	}
+		    
+		
+	public class InputHandler implements ActionListener{
+	
+		public void actionPerformed(ActionEvent e) {
+			
+			int jml = Integer.parseInt(jtf.getText());
+			mainTextArea.setText("" + (jml +asset));
+	}
+			
+	
+	
+	 public void createGameScreen() {
+	    	
+		titleNamePanel.setVisible(false);
+		startButtonPanel.setVisible(false);
+		
+		mainTextPanel = new JPanel();
+		mainTextPanel.setBounds(100, 100, 600, 500);
+		mainTextPanel.setBackground(Color.black);
+		con.add(mainTextPanel);
+		
+		mainTextArea = new JTextArea("Main Text Area!");
+		mainTextArea.setBounds(100, 100, 600, 500);
+		mainTextArea.setBackground(Color.black);
+		mainTextArea.setForeground(Color.white);
+		mainTextArea.setFont(normalFont);
+		mainTextArea.setLineWrap(true);
+		mainTextPanel.add(mainTextArea);
+		
+		
+		
+		playerPanel = new JPanel();
+		playerPanel.setBounds(100, 15, 600, 50);
+		playerPanel.setBackground(Color.black);
+		playerPanel.setLayout(new GridLayout(1,4));
+		con.add(playerPanel);
+		
+		assetLabel = new JLabel("Assets: ");
+		assetLabel.setFont(normalFont);
+		assetLabel.setForeground(Color.white);
+		playerPanel.add(assetLabel);
+		
+		
+		assetLabelNum = new JLabel();
+		assetLabelNum.setFont(normalFont);
+		assetLabelNum.setForeground(Color.white);
+		playerPanel.add(assetLabelNum);
+		
+		dayLabel = new JLabel("Day: ");
+		dayLabel.setFont(normalFont);
+		dayLabel.setForeground(Color.white);
+		playerPanel.add(dayLabel);
+		
+		dayName = new JLabel();
+		dayName.setFont(normalFont);
+		dayName.setForeground(Color.white);
+		playerPanel.add(dayName);
+		
+		inputPanel = new JPanel();
+		inputPanel.setBounds(150,475,500,50);
+		inputPanel.setBackground(Color.black);
+		
+		inputPanel.setLayout(new GridLayout(1,1));
+		
+		
+		choice1 = new JButton(">");
+    	choice1.setBackground(Color.black);
+    	choice1.setForeground(Color.white);
+    	choice1.setFont(normalFont);
+    	choice1.setFocusPainted(false);
+    	choice1.addActionListener(cHandler);
+    	choice1.setActionCommand("c1");
+    	inputPanel.add(choice1);
+		con.add(inputPanel);
+		
+		
+		choice2 = new JButton("UPDATE");
+    	choice2.setBackground(Color.black);
+    	choice2.setForeground(Color.white);
+    	choice2.setFont(normalFont);
+    	choice2.setFocusPainted(false);
+    	choice2.addActionListener(cHandler);
+    	choice2.setActionCommand("reset");
+    	choice2.setBounds(300,405, 200, 50);
+    	choice2.setVisible(false);
+		con.add(choice2);
+		playerSetUp();
+	}
+	
+	public void playerSetUp() {
+		
+		dayName.setText("" + day);
+		String assetss = String.format("%.2f", asset);
+		assetLabelNum.setText("" + assetss);
+		intro1();
+	}
+	
+	public class ChoiceHandler implements ActionListener{
+    	
+    	public void actionPerformed(ActionEvent event) {
+    		String yourChoice = event.getActionCommand();
+    		if(yourChoice.equals("c1")) {
+	    		switch(position) {
+	    		case "intro1": intro2(); position = "intro2"; break;
+	    		case "intro2": intro3(); position = "intro3"; break;
+	    		case "intro3": buyScreen(); position = "test"; break;
+	    		//case "weatherScreen": WeatherGroup(); position = "weatherGroup"; break;
+	    		case "test": calc5(); position = "buyScreen"; break;
+	    		case "calc1": calc2(); position = "calc2"; break;
+	    		case "calc2": calc3(); position = "calc3"; break;
+	    		case "calc3": calc5(); position = "calc5"; day++; break;
+	    		case "end": end(); 
+	    		//case "calc4": calc5(); position = "calc5"; break;
+	    		default: day++;   if(day<=10){updateHUD();buyScreen(); position = "test";}else {end();}
+	    		}
+    		}
+    		else
+    		{
+    			glassCost.setText(String.format("%.2f", (Integer.parseInt(jtf_Glasses.getText())*.02)));
+    			signCost.setText(String.format("%.2f", (Integer.parseInt(jtf_Signs.getText())*.15)));
+    			totalCost.setText( "Expenses: " +  String.format("%.2f",(Integer.parseInt(jtf_Signs.getText())*.15 + Integer.parseInt(jtf_Glasses.getText())*.02)));
+    		}
+    		
+    	}
+    }
+	
+	public class TitleScreenHandler implements ActionListener{
+		public void actionPerformed(ActionEvent event) {
+			
+			createGameScreen();
+			
+		}
+	}
+	
+	
+	 void intro1(){
+		 position = "intro1";	
+	mainTextArea.setText(
+		    "HI WELCOME TO "+LEM+"SVILLE, CALIFORNIA!\n\n"+
+		"IN THIS SMALL TOWN, YOU ARE IN CHARGE OF\n"+
+		"RUNNING YOUR OWN "+PROD+" STAND. YOU CAN\n"+
+		"COMPETE WITH AS MANY OTHER PEOPLE AS YOU\n"+
+		"WISH, BUT HOW MUCH PROFIT YOU MAKE IS UP\n"+
+		"TO YOU (THE OTHER STAND'S SALES WILL NOT\n"+
+		"AFFECT YOUR BUSINESS IN ANY WAY). IF YOU\n"+
+		"MAKE THE MOST MONEY, YOU'RE THE WINNER!!\n\n");
+	 }
+	void intro2(){
+	 
+	mainTextArea.setText(
+	"TO MANAGE YOUR "+PROD+" STAND, YOU WILL\n"+
+	"NEED TO MAKE THESE DECISIONS EVERY DAY:\n\n"+
+	"1. HOW MANY "+UNT+" OF "+PROD+" TO MAKE\n"+
+	"   (ONLY ONE BATCH IS MADE EACH MORNING)\n"+
+	"2. HOW MANY ADVERTISING SIGNS TO MAKE\n"+
+	"   (THE SIGNS COST FIFTEEN CENTS EACH)\n"+
+	"3. WHAT PRICE TO CHARGE FOR EACH GLASS\n");
+	}
+	
+	void intro3(){
+	mainTextArea.setText(
+	"YOU WILL BEGIN WITH $2.00 CASH (ASSETS).\n"+
+	"BECAUSE YOUR MOTHER GAVE YOU SOME "+SUGAR+"\n"+
+	"YOUR COST TO MAKE LEMONADE IS TWO CENTS\n"+
+	"A GLASS (THIS MAY CHANGE IN THE FUTURE)."+
+	"YOUR EXPENSES ARE THE SUM OF THE COST OF\n"+
+	"THE "+PROD+" STAND AND THE COST OF THE SIGNS.\n\n"+
+	"Your profits are the difference between\n"+
+	"the income from sales and your expenses.");
+	}
+	
+	 
+	private void oldGame()
+	{
+		print("HI AGAIN! welcome to lemonsville!\n"
+	+ "\n"
+	+ "Let's continue your last game from where\n"
+	+ "You left it last Time.  Do you remember\n"
+	+ "What day number it was?");
+	day = inputInt("")+1;
+	print("Okay we'll start with day no. " + day);
+	asset = inputInt("\n"
+	+ "player no. 1, how much money (assets)\n"
+	+ "did you have?");
+	if (asset > 10) {
+	print("Just to be fair, let's make that $10.00 ");
+	asset=10;
+	}
+	print("\n"
+	+ "...ready to begin?");
+			String i = sn.next();
+			clear();
+			
+		}
+	     
+	   //this method acts like it clears the screen.
+	
+	private void clear()
+		{
+			char c = '\n';
+			int length = 25;
+			char[] chars = new char[length];
+			Arrays.fill(chars, c);
+			System.out.print(String.valueOf(chars));
+		}
+	 
+			private void print(String text)
+			{
+				System.out.println(text.toUpperCase());
+			}
+			
+		
+	
+	
+	private void weatherScreen() 
+	{
+			System.out.println("Now let's look at the weather report to see how the day will be."); 
+			
+	}
+	
+	
+	private String inputTxt(String prompt) {
+		System.out.println(prompt.toUpperCase());
+		return sn.nextLine();
+	}
+	
+	/**
+	 * Allows the user to input and Int
+	 * @param prompt The string to be printed to the screen
+	 * @return an int value that has been input.
+	 */
+	
+	private int inputInt(String prompt) {
+			System.out.println(prompt.toUpperCase());
+			return sn.nextInt();
+	}
+	 
+	/**
+	 * Asks a yes or no question and returns the user's response as a boolean.
+	 * @author Alejandro and Christian
+	 * 
+	 * 
+	 * @param prompt The string to print to the screen
+	 * @return Returns a boolean true if yes or y is entered, returns false if anything else is.
+	 */
+	
+	
+	// Ismael and Mike's
+	
+	
+	
+	
+	
+	/*
+	 *  Priscila, Marco and Jacob's group 
+	 */
+	private void WeatherGroup()
+	{
+	
+	    Random rand = new Random();
+	    int sunny = 0;//sunny
+	int dry = 1;//dry
+	int rainy = 2;//cloudy w/ chance for rain
+	    int weather = rand.nextInt(3);
+	    
+	    switch (weather)
+	    {
+		    case 0:
+		    	weather0();
+		    	break ;
+		    case 1:
+		    	weather1();
+		    	break ;
+		    case 2:
+			weather2();
+				
+				break;
+	    }   
+	}
+	
+	private void weather0() 
+	{
+		System.out.println("Todays weather forecast is Sunny.");
+		weatherFactor = 1;
+	}
+	
+	private void weather1() 
+	{
+		System.out.println("Todays weather forecast is extremely dry.");
+		weatherFactor = 2;
+	}
+	
+	private void weather2() 
+	{
+		chanceRain();
+	}
+	
+	private void chanceRain()
+	{
+	    	Random ran = new Random();
+	    	int cloudyWithRain = ran.nextInt(101);
+	    	double chance =((double) cloudyWithRain * 11) * 10;
+	    	double factor = chance / 100;
+	    	if(factor <= (double)50)
+		    	{
+		    	    System.out.println("Todays weather forecast is: No rain, what luck!");
+		    weatherFactor = (int) factor; 
+		}
+	if(factor >= (double)50)
+		{
+		    System.out.println("Todays weather forecast is: THUNDERSTORM!");
+		    	    weatherFactor = 0; 
+		    	}
+		
+	}
+	private void specialEventGroup() 
+	    {
+			// TODO Auto-generated method stub
+	Random rando = new Random();
+	int robbery = 0;
+	int haunted = 1;
+	int concert = 2;
+	int nothing = 3;
+	int specialEvents = rando.nextInt(4);
+	
+	    switch (specialEvents)
+	    {
+		    case 0:
+		    	robberyTime();
+		    	break ;
+		    
+		    case 1:
+		    	hauntedTime();// karen math in method      //   profit - 50/100
+		break ;
+	
+	case 2:
+	concertTime();// karen math in method         // profit + 50/100
+		 			break;
+		 		    
+		 		    case 3:
+		 		    	nothingTime();
+		 		    	break;
+		 	    }
+		}
+	    
+	private void robberyTime()
+	{
+		Random ran = new Random();
+		int chanceOfRobbery = ran.nextInt(101);
+		double rob =((double) chanceOfRobbery * 12) * 10;
+		double specialEvents = rob / 100;
+		if(specialEvents > (double)50)
+	    	{
+	    	    System.out.println("You just got Robbed!");
+		    asset = asset*.25;
+		}
+	if( specialEvents <= (double)50)
+		{
+		    System.out.println("You escaped getting Robbed today !");
+	    	}
+		
+	}
+	
+	private void hauntedTime()
+	{
+		print("UH OH! The non-copyright infringing Ghostblasters didn't show up to work today, so no one showed up to your stand. Your profit for the day a is 0.");
+		GlassesSold = 0;
+	}
+	
+	private void concertTime()
+	{
+		print("Great to be you! Some performer you never heard of has come to town. Business is booming and you gain extra money today.");
+		GlassesSold *= 1.25;
+	}
+	
+	private void nothingTime()
+	{
+		print("How boring nothing happened...");
+	}
+	
+	
+	private void calc1()
+	{
+		
+	    
+	    
+	    //have to make it so that the assets change
+	    mainTextArea.setText("You are starting off with " + form(asset) + " dollars." +
+	   "You will choose how much you wish \n"+
+	   "to spend, and that will affect your \n"+
+	   "total amount of money. How many glasses do you want to make? ($0.02 each): ");
+	   
+	}
+	
+	private void calc2()
+	{ 
+		
+		
+		
+		updateHUD();
+	    
+	    //have to make it so that the assets change
+	    mainTextArea.setText("How many signs do you wish to put up? ($0.15 each): ");
+	   
+	}
+	
+	private void calc3() {
+
+		
+		
+		updateHUD();
+		mainTextArea.setText("How much do you want to charge per glass? (in cents):");
+	}
+	
+	private void calc4() {
+
+		
+		
+	}
+	
+	private void calc5() {
+		
+		
+		mainTextPanel.setVisible(true);
+		inputPanel_Glasses.setVisible(false);
+		inputPanel_Signs.setVisible(false);
+		inputPanel_Price.setVisible(false);
+		glassCost.setVisible(false);
+		signCost.setVisible(false);
+		totalCost.setVisible(false);
+		choice2.setVisible(false);
+		
+		glassesMade = Integer.parseInt(jtf_Glasses.getText());
+		int pricePerGlass = Integer.parseInt(jtf_Price.getText());
+		signsMade = Integer.parseInt(jtf_Signs.getText());
+		
+		double glassTotal = (double)costPerGlass * glassesMade;// The total amount it costs to make number of chosen glasses
+		double N1 = (100) * 30 / (pricePerGlass * pricePerGlass);
+		double w = (0 - signsMade) * .5;
+		weatherFactor = 1;
+		//adbenefit is the % increase in sales due to ads
+		double adBenefit = 1 - Math.exp(w) * 1;    
+		double N3 = weatherFactor * N1 * (1 + adBenefit);
+		int N2 = (int)N3;
+		int gm = (int)glassesMade;
+		
+		GlassesSold = Math.min(N2, gm);
+		//specialEventGroup();
+		GlassesSold = Math.min(GlassesSold, gm);
+		double income = GlassesSold * pricePerGlass / 100;
+		double expensees = ((glassTotal) + (signsMade * costPerSign));
+		String expenses = String.format("%.2f", expensees);
+		
+		
+		
+		
+		profit = income - expensees;
+		asset += profit;
+		
+		
+		
+		String profits = String.format("%.2f", profit);
+		String assetss = String.format("%.2f", asset);
+		//mainTextArea.setText(profits);
+		updateHUD();
+		
+		mainTextArea.setText("                   $$ Lemonsville Daily Financial Report $$\n"+
+							"		Day: " +day+"\n"+
+							
+							"Glasses sold: " + GlassesSold+"\n"+
+							"PricePerGlass: "+ pricePerGlass+"\n"+
+							"Income:"+ income+"\n"+
+							"\n"+
+							"Glasses made: " + glassesMade+"\n"+
+							"Signs made: " + signsMade+"\n"+
+							"Expenses: " + expenses+"\n"+
+							"\n"+
+							"Profits: " + profits+"\n"+
+							"Assets: " + assetss);
+	
+	
+	}
+	
+	private void updateHUD() {
+		
+		String assetss = String.format("%.2f", asset);
+		assetLabelNum.setText("" + assetss);
+		dayName.setText("" + day);
+	}
+	
+	public void buyScreen() {
+		mainTextPanel.setVisible(false);
+		choice2.setVisible(true);
+		
+		inputPanel_Glasses = new JPanel(new BorderLayout(30,0));
+		inputPanel_Glasses.setBounds(100, 125, 400,50);
+		inputPanel_Glasses.setBackground(Color.black);
+		
+		glassesLabel = new JLabel();
+		glassesLabel.setText("How many glasses do you want to make?  ");
+		glassesLabel.setFont(normalFont);
+		glassesLabel.setBackground(Color.black);
+		glassesLabel.setForeground(Color.white);
+		inputPanel_Glasses.add(glassesLabel, BorderLayout.WEST);
+		
+		jtf_Glasses = new JTextField();
+		jtf_Glasses.addActionListener(iHandler);
+		jtf_Glasses.setFont(normalFont);
+		jtf_Glasses.setBackground(Color.black);
+		jtf_Glasses.setForeground(Color.white);
+		inputPanel_Glasses.add(jtf_Glasses, BorderLayout.CENTER);
+		con.add(inputPanel_Glasses);
+		
+		glassCost = new JLabel("00");
+		glassCost.setFont(normalFont);
+		glassCost.setBackground(Color.black);
+		glassCost.setForeground(Color.white);
+		glassCost.setBounds(600, 125,100,50);
+		con.add(glassCost);
+		
+		inputPanel_Signs = new JPanel(new BorderLayout(46,0));
+		inputPanel_Signs.setBounds(100, 200, 400,50);
+		inputPanel_Signs.setBackground(Color.black);
+		
+		signLabel = new JLabel();
+		signLabel.setFont(normalFont);
+		signLabel.setText("How many signs do you want to make?  ");
+		signLabel.setFont(normalFont);
+		signLabel.setBackground(Color.black);
+		signLabel.setForeground(Color.white);
+		inputPanel_Signs.add(signLabel, BorderLayout.WEST);
+		
+		jtf_Signs = new JTextField();
+		jtf_Signs.addActionListener(iHandler);
+		jtf_Signs.setFont(normalFont);
+		jtf_Signs.setBackground(Color.black);
+		jtf_Signs.setForeground(Color.white);
+		inputPanel_Signs.add(jtf_Signs, BorderLayout.CENTER);
+		
+		con.add(inputPanel_Signs);
+		
+		signCost = new JLabel("00");
+		signCost.setFont(normalFont);
+		signCost.setBackground(Color.black);
+		signCost.setForeground(Color.white);
+		signCost.setBounds(600, 200,50,50);
+		con.add(signCost);
+		
+		inputPanel_Price = new JPanel(new BorderLayout(24,0));
+		inputPanel_Price.setBounds(100, 275, 400,50);
+		inputPanel_Price.setBackground(Color.black);
+		
+		priceLabel = new JLabel();
+		priceLabel.setFont(normalFont);
+		priceLabel.setText("How much money do you want to charge?  ");
+		priceLabel.setFont(normalFont);
+		priceLabel.setBackground(Color.black);
+		priceLabel.setForeground(Color.white);
+		inputPanel_Price.add(priceLabel, BorderLayout.WEST);
+		
+		jtf_Price = new JTextField();
+		jtf_Price.addActionListener(iHandler);
+		jtf_Price.setFont(normalFont);
+		jtf_Price.setBackground(Color.black);
+		jtf_Price.setForeground(Color.white);
+		inputPanel_Price.add(jtf_Price, BorderLayout.CENTER);
+		
+		con.add(inputPanel_Price);
+		
+		totalCost = new JLabel("Expenses: " + "00.00");
+		totalCost.setFont(normalFont);
+		totalCost.setBackground(Color.black);
+		totalCost.setForeground(Color.white);
+		totalCost.setBounds(550, 350,200,50);
+		con.add(totalCost);
+		
+	}
+	
+	public void end() {
+		String assetss = String.format("%.2f", asset);
+		mainTextArea.setText("Your Final Score is: " + assetss + " dollars! Congrats.");
+	}
+	
+	/*
+	   
+	   
+		    
+			 		
+	     
+	    
+	    
+	   // prints cost and assets
+	    double checkGMValidation = glassesMade * costPerGlass;
+	    
+	    double newAsset = asset - checkGMValidation;
+	    
+	   
+	    if(checkGMValidation > asset) {
+	        while(checkGMValidation > asset) {
+	            System.out.print("\nYou don't have enough money");
+	do {
+	    System.out.print("\nHow many glasses do you want to make? ($0.02 each): ");
+	while(!scan.hasNextInt()) {
+	    String input = scan.next();
+	    System.out.printf("'%s' is not a valid number.\n", input);
+	        }
+	        glassesMade = scan.nextInt();
+	        checkGMValidation = glassesMade * costPerGlass;
+	          
+	            newAsset = asset - checkGMValidation;
+	           
+	        } while(glassesMade < 0);
+	    }
+	    
+	}
+	
+	
+	
+	int signsMade;    
+	do {
+	  System.out.print("\nHow many signs do you wish to put up? ($0.15 each): ");
+	  while(!scan.hasNextInt()) {
+	    String input = scan.next();
+	    System.out.printf("'%s' is not a valid number.\n", input);
+	  }
+	  signsMade = scan.nextInt();
+	} while(signsMade < 0);
+	
+	double checkSBValidation = signsMade * signsCost;
+	
+	newAsset -= checkSBValidation;
+	
+	double assetSB;
+	
+	    if(checkSBValidation > newAsset) {
+	        while(checkSBValidation > newAsset) {
+	            System.out.print("\nYou don't have enough money");
+	do {
+	    System.out.print("\nHow many signs do you wish to put up? ($0.15 each): ");
+	while(!scan.hasNextInt()) {
+	    String input = scan.next();
+	    System.out.printf("'%s' is not a valid number.\n", input);
+	            }
+	        signsMade = scan.nextInt();
+	        checkSBValidation = signsMade * signsCost;
+	            
+	            newAsset = asset - checkSBValidation;
+	        } while(signsMade < 0);
+	        }
+	    
+	}
+	
+	double pricePerGlass;
+	do {
+	  System.out.print("\nHow much do you want to charge per glass? (in cents): ");
+	  while(!scan.hasNextInt()) {
+	    String input = scan.next();
+	    System.out.printf("'%s' is not a valid number.\n", input);
+	  }
+	  pricePerGlass = scan.nextInt();
+	} while(pricePerGlass < 0);
+	
+	
+	double glassTotal = costPerGlass * glassesMade;// The total amount it costs to make number of chosen glasses
+	
+	double N1 = (100) * 30 / (pricePerGlass * pricePerGlass);
+	double w = (0 - signsMade) * .5;
+	//adbenefit is the % increase in sales due to ads
+	double adBenefit = 1 - java.lang.Math.exp(w) * 1;
+	    
+	double N3 = weatherFactor * N1 * (1 + adBenefit);
+	
+	int N2 = (int)N3;
+	int gm = (int)glassesMade;
+	GlassesSold = java.lang.Math.min(N2, gm);
+	specialEventGroup();
+	GlassesSold = Math.min(GlassesSold, gm);
+	double income = GlassesSold * pricePerGlass / 100;
+	double expensees = ((glassTotal) + (signsMade * signsCost));
+	String expenses = String.format("%.2f", expensees);
+	
+	
+	
+	
+	profit = income - expensees;
+	asset += profit;
+	
+	
+	
+	String profits = String.format("%.2f", profit);
+	String assetss = String.format("%.2f", asset);
+	
+	    
+	
+	String  i = inputTxt("");
+	
+	
+	
+	
+	
+	//showResults();
+	System.out.println("                   $$ Lemonsville Daily Financial Report $$             ");
+	System.out.println("					Day: " +day+ "					  ");
+	System.out.println();
+	if(GlassesSold == 1)
+	{
+	    System.out.println(GlassesSold + " glass sold"); 
+	}
+	else if(GlassesSold >= 2 || GlassesSold == 0)
+	{
+	    System.out.println(GlassesSold + " glasses sold");
+	}
+	else if(weatherFactor == 0)
+	{
+	    if(glassesMade >= 0)
+	    {
+	        //updateWeatherReport(); (to create next)
+	//updating should create a storm pop up & be created by weather group
+	System.out.println("All lemonade was ruined.");
+	    }
+	}
+	double pricePerGlass2 = pricePerGlass / 100;
+	System.out.println("$ " + form(pricePerGlass2) + " price per glass");
+	System.out.println("Income: $ " + income);
+	System.out.println();
+	System.out.println();
+	
+	if(glassesMade == 1)
+	{
+	    System.out.println(gm + " glass made");
+	}
+	else
+	{
+	    System.out.println(gm + " glasses made");
+	}
+	if(signsMade == 1)
+	{
+	    System.out.println(signsMade + " sign made");
+	System.out.println("Expenses: $ " + expenses);
+	}
+	else
+	{
+	    System.out.println(signsMade + " signs made");
+	System.out.println("Expenses: $ " + expenses);
+	}
+	System.out.println();
+	System.out.println();
+	System.out.println("Profit: $ " + profits);
+	System.out.println("Assets: $  " + assetss);
+	*/
+	
+	
+	  
+	private void playNote(int note,int length) throws InterruptedException, MidiUnavailableException {
+			mChannels[0].noteOn(note,100);
+			Thread.sleep(length);
+			mChannels[0].noteOff(note);
+			
+	}
+		     
+	private String form(double num){
+	    	return df.format(num);
+	    }
+	     
+	private void sevenNation() throws InterruptedException, MidiUnavailableException{
+		 playNote(52,QUART+EIGTH);
+	     playNote(52,EIGTH);
+	     playNote(55,EIGTH+SIXT);
+	     playNote(52,EIGTH+SIXT);
+	     playNote(50,EIGTH);
+	     playNote(48,HALF);
+	     playNote(47,HALF);
+	 }
+	
+	
+	public static void main(String[] args){
+			
+	        new Game();        
+	    }
+	//test
+	}
+
+ 
